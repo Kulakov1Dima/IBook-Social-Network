@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">CriminalCode</string>
+    <string name="hello">Hello</string>
+    <string name="textview">"  Уголовный кодекс 2021"</string>
+    <string name="todo">TODO</string>
+    <string name="todo1">TODO</string>
 </resources>
