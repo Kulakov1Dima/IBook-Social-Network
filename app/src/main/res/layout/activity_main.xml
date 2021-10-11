@@ -7,25 +7,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:background="@android:color/holo_blue_dark"
-        tools:layout_conversion_absoluteHeight="56dp"
-        tools:layout_conversion_absoluteWidth="411dp"/>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="58dp"
-        android:background="#00F8F1F0"
-        android:text="@string/textview"
-        android:textAllCaps="false"
-        android:textColor="#FAF8F8"
-        android:textSize="30sp"
-        tools:text="Уголовный кодекс 2021" />
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -35,7 +16,7 @@
             android:layout_width="130dp"
             android:layout_height="130dp"
             android:layout_marginStart="36dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="20dp"
             android:contentDescription="@string/todo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -46,12 +27,12 @@
             android:id="@+id/imageButton2"
             android:layout_width="130dp"
             android:layout_height="130dp"
-            android:layout_marginTop="88dp"
+            android:layout_marginTop="20dp"
             android:layout_marginEnd="36dp"
+            android:contentDescription="@string/todo"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/profile"
-            android:contentDescription="@string/todo" />
+            app:srcCompat="@drawable/profile" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
