@@ -14,6 +14,7 @@ public class readActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
+        getSupportActionBar().setTitle("Статьи уголовного кодекса");
         //глава I и тд.
         ActionBar actionBar = getSupportActionBar();        //получение доступа к ActionBar
         actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
