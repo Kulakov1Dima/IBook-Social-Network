@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CriminalCode">
         <activity
+            android:name=".pageRead"
+            android:exported="false" />
+        <activity
             android:name=".profileActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -25,8 +28,7 @@
         </activity>
         <activity
             android:name=".readActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

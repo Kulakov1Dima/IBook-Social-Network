@@ -1,8 +1,12 @@
 package com.example.criminalcode;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +23,15 @@ public class readActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();        //получение доступа к ActionBar
         actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
         actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
+
+        Button chapter1 = (Button) findViewById(R.id.chapter1);
+        chapter1.setOnClickListener(new View.OnClickListener(){//временно висит pageRead на первой кнопке, чтобы понять как вообще делать
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(readActivity.this,pageRead.class);
+                startActivity(intent);                      //переход на экран чтения статей(pdf файл)
+            }
+        });
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
