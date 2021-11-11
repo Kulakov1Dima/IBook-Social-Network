@@ -16,7 +16,7 @@ public class pageRead extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_read);
         PDFView pdfView = (PDFView) findViewById(R.id.pdfView);
-        pdfView.fromAsset("P.pdf").load();
+        pdfView.fromAsset("ukodeksrf.pdf").load();
 
     }
 }
