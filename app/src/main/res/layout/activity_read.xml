@@ -25,7 +25,7 @@
                 android:text="Раздел I. Уголовный закон" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/chapter2"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -34,7 +34,7 @@
                 android:text="Раздел II. Преступление" />
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/chapter3"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -43,7 +43,7 @@
                 android:text="Раздел III. Наказание" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/chapter4"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
@@ -52,7 +52,7 @@
                 android:text="Раздел IV. Освобождение от уголовной ответственности и от наказания" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/chapter5"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -61,7 +61,7 @@
                 android:text="Раздел V. Уголовная ответсвенность несовершеннолетних" />
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/chapter6"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -70,7 +70,7 @@
                 android:text="Раздел VI. Иные меры уголовно-правового характера" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/chapter7"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -79,7 +79,7 @@
                 android:text="Раздел VII. Преступления против личности" />
 
             <Button
-                android:id="@+id/button15"
+                android:id="@+id/chapter8"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -88,7 +88,7 @@
                 android:text="Раздел VIII. Преступления в сфере экономики" />
 
             <Button
-                android:id="@+id/button16"
+                android:id="@+id/chapter9"
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_marginStart="20dp"
@@ -97,7 +97,7 @@
                 android:text="Раздел IX. Преступления против общественной безопасности и общественного порядка" />
 
             <Button
-                android:id="@+id/button17"
+                android:id="@+id/chapter10"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -106,7 +106,7 @@
                 android:text="Раздел X. Преступления против государственной власти" />
 
             <Button
-                android:id="@+id/button18"
+                android:id="@+id/chapter11"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
@@ -115,7 +115,7 @@
                 android:text="Раздел XI. Преступления против военной службы " />
 
             <Button
-                android:id="@+id/button19"
+                android:id="@+id/chapter12"
                 android:layout_width="match_parent"
                 android:layout_height="58dp"
                 android:layout_marginStart="20dp"
