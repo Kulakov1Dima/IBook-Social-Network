@@ -6,13 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".pageRead">
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="238dp"
-        android:layout_height="106dp"
-        android:text="Привет"
-        android:textSize="50sp" />
-
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="fill_parent"
