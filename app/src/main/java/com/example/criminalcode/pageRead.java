@@ -18,10 +18,14 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_read);
+
+        int nPage=0;
+        nPage= getIntent().getIntExtra("Npage",0);
+
         PDFView pdfView = (PDFView) findViewById(R.id.pdfView);
         pdfView
                 .fromAsset("ukodeksrf.pdf")
-                .defaultPage(0)
+                .defaultPage(nPage)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
                 .load();
