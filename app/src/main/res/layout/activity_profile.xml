@@ -22,10 +22,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
         android:layout_marginBottom="128dp"
         android:text="Страница всё ещё в разработке"
         android:textSize="22sp"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
@@ -84,13 +87,24 @@
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="75dp"
-        android:layout_height="27dp"
+        android:layout_width="76dp"
+        android:layout_height="28dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Чтение"
+        android:text="Чтение :"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="71dp"
+        android:layout_height="29dp"
+        android:layout_marginTop="10dp"
+        android:text="0/0"
+        android:textSize="18sp"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <ProgressBar
@@ -112,7 +126,7 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
-        android:text="PRO версия"
+        android:text="Последняя страница"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
