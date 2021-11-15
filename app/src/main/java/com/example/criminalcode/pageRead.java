@@ -2,7 +2,9 @@ package com.example.criminalcode;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -54,7 +56,8 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                this.finish();
+                Intent intent = new Intent(pageRead.this,MainActivity.class);
+                startActivity(intent);  //переход на экран со статьями уголовного кодекса
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
