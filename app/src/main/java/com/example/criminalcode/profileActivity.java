@@ -59,10 +59,10 @@ public class profileActivity extends AppCompatActivity {
         TextView pageN = findViewById(R.id.textView3);      //страницы в прогрессе чтения
         pageN.setText((int)(pageL.getInt("NpageL",0) + 1)+"/"+ pageL.getInt("pageC",0));
 
-        double maxProgress=pageL.getInt("pageC",0)/100;
+        double maxProgress=pageL.getInt("pageC",0)/100; //переменная равная 1% от всех страниц
 
         ProgressBar readPage =(ProgressBar)findViewById(R.id.progressBar2);
-        readPage.setProgress((int)((pageL.getInt("NpageL",0) + 1)/maxProgress));
+        readPage.setProgress((int)((pageL.getInt("NpageL",0) + 1)/maxProgress)); //процент прочитанного
 
         readPage.setOnClickListener(new View.OnClickListener() {
             @Override
