@@ -20,7 +20,6 @@ import android.widget.TextView;
 public class profileActivity extends AppCompatActivity {
 
     private static SharedPreferences pageL;
-    private static SharedPreferences.Editor editor = null;
 
 
     @Override
