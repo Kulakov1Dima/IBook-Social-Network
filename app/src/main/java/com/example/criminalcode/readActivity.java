@@ -1,7 +1,9 @@
 package com.example.criminalcode;
 
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -14,6 +16,10 @@ import androidx.appcompat.app.AppCompatActivity;
 // по моим предположениям в приложении должны открываться PDF файлы
 
 public class readActivity extends AppCompatActivity {
+
+    private static SharedPreferences pageL;
+    public static int lastP;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,6 +29,14 @@ public class readActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();        //получение доступа к ActionBar
         actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
         actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
+
+        pageL = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
+        lastP=pageL.getInt("NpageL",0);
+        if(lastP>1) {
+            CustomDialogFragment dialog = new CustomDialogFragment();
+            dialog.show(getSupportFragmentManager(), "custom");
+        }
+
 
         Button chapter1 = (Button) findViewById(R.id.chapter1);
         chapter1.setOnClickListener(new View.OnClickListener(){
