@@ -1,6 +1,8 @@
 package com.example.criminalcode;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -38,5 +40,6 @@ public class MainActivity extends AppCompatActivity {
         //тут должны быть ещё две кнопки
         //тестовые задания
         //ошибки(мой прогресс)
+
     }
 }
