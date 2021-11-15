@@ -15,7 +15,7 @@ import android.widget.TextView;
 
 /*
 Экран профиля показаны активность(в минутах), рекомендации и полезные ссылки
-Во врианте закрытого софта: сведения о тарифе pro версии (но наврятли так будет :) )
+Во варианте закрытого софта: сведения о тарифе pro версии (но наврятли так будет :) )
  */
 public class profileActivity extends AppCompatActivity {
 
@@ -34,7 +34,7 @@ public class profileActivity extends AppCompatActivity {
         actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
         getSupportActionBar().setTitle("Добро пожаловать user!");     //название страницы
 
-        textRead();
+        textRead();                                         //функция прогрессбара и вывода номера последней страницы в профиле
 
         Button lastPage = (Button) findViewById(R.id.button2);
         lastPage.setOnClickListener(new View.OnClickListener(){
@@ -55,7 +55,7 @@ public class profileActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(item);
         }
     }
-    void textRead(){
+    void textRead(){                                        //функция прогрессбара и вывода номера последней страницы в профиле
         TextView pageN = findViewById(R.id.textView3);      //страницы в прогрессе чтения
         pageN.setText((int)(pageL.getInt("NpageL",0) + 1)+"/"+ pageL.getInt("pageC",0));
 
