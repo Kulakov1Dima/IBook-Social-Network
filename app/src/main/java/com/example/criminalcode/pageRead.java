@@ -57,7 +57,7 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(pageRead.this,MainActivity.class);
-                startActivity(intent);  //переход на экран со статьями уголовного кодекса
+                startActivity(intent);  //переход на главную страницу
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
