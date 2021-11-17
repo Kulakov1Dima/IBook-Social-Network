@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         buttons();                                                                                  //все кнопки главного Activity
     }
 
-public void buttons(){
+ void buttons(){
     ImageButton profileButton = findViewById(R.id.profileButton);                                   //кнопка профиля
     profileButton.setOnClickListener(v -> {
         Intent intent = new Intent(MainActivity.this,profileActivity.class);
