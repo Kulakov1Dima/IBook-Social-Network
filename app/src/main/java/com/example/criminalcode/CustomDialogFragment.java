@@ -2,11 +2,11 @@ package com.example.criminalcode;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import androidx.fragment.app.DialogFragment;
+
 import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 public class CustomDialogFragment extends DialogFragment {
 
@@ -18,13 +18,11 @@ public class CustomDialogFragment extends DialogFragment {
                 .setTitle("Продолжить с последней страницы?")
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setNegativeButton("нет",null)
-                .setPositiveButton("да", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int id) {
+                .setPositiveButton("да", (dialog, id) -> {
                     Intent intent = new Intent(getActivity(),pageRead.class);
                     intent.putExtra("Npage",readActivity.lastP);
                     startActivity(intent);                      //переход на экран чтения статей(pdf файл)
-            }
-        }).create();
+            }).create();
 
     }
 }

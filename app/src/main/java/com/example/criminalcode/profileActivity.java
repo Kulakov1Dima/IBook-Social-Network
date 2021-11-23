@@ -21,16 +21,15 @@ public class profileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         pageL = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
         customizationActionBar();
-        textRead();                                         //функция прогрессбара и вывода номера последней страницы в профиле
-        buttons();
+        textRead();                                                                                 //функция прогрессбара и вывода номера последней страницы в профиле
+        buttons();                                                                                  //все кнопки на активности профиля
     }
-
     void customizationActionBar(){
-        ActionBar actionBar = getSupportActionBar();        //получение доступа к ActionBar
-        assert actionBar != null;
-        actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
-        actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
-        getSupportActionBar().setTitle("Добро пожаловать user!");     //название страницы
+        ActionBar actionBar = getSupportActionBar();                                                //получение доступа к ActionBar
+        assert actionBar != null;                                                                   //исключение исключения
+        actionBar.setHomeButtonEnabled(true);                                                       //включение кнопки назад
+        actionBar.setDisplayHomeAsUpEnabled(true);                                                  //отображение кнопки назад
+        getSupportActionBar().setTitle("Добро пожаловать user!");                                   //название страницы
     }
     void buttons(){
         Button lastPage = findViewById(R.id.button2);

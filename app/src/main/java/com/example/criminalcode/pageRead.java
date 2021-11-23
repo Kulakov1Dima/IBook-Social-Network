@@ -3,6 +3,7 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +18,6 @@ import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
 public class pageRead extends AppCompatActivity implements OnPageChangeListener {
 
-    private static SharedPreferences pageL;
     private static SharedPreferences.Editor editor = null;
 
     @Override
@@ -25,28 +25,30 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_read);
 
-        pageL = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
-        editor = pageL.edit();
+        SharedPreferences putPageNumber = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
+        editor = putPageNumber.edit();
 
-        int nPage=0;
-        nPage= getIntent().getIntExtra("Npage",0);
+        int pageNumber;
+        pageNumber= getIntent().getIntExtra("Npage",0);
 
         PDFView pdfView = (PDFView) findViewById(R.id.pdfView);
         pdfView
                 .fromAsset("ukodeksrf.pdf")
-                .defaultPage(nPage)
+                .defaultPage(pageNumber)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
                 .load();
         ActionBar actionBar = getSupportActionBar();        //получение доступа к ActionBar
+        assert actionBar != null;
         actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
         actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
 
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onPageChanged(int page, int pageCount) {
-        setTitle(String.format("Уголовный кодекс"));
+        setTitle("Уголовный кодекс");
         TextView pageN = findViewById(R.id.textView11);
         pageN.setText((int)(page + 1)+"/"+ pageCount);
 
@@ -54,13 +56,11 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
         editor.putInt("pageC",pageCount).apply();
     }
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                Intent intent = new Intent(pageRead.this,MainActivity.class);
-                startActivity(intent);  //переход на главную страницу
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
+        if (item.getItemId() == android.R.id.home) {
+            Intent intent = new Intent(pageRead.this, MainActivity.class);
+            startActivity(intent);  //переход на главную страницу
+            return true;
         }
+        else return super.onOptionsItemSelected(item);
     }
 }
