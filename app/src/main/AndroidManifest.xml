@@ -10,10 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CriminalCode">
         <activity
-            android:name=".pageRead"
+            android:name=".PageReadActivity"
             android:exported="false" />
         <activity
-            android:name=".profileActivity"
+            android:name=".ProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
         <activity
@@ -27,7 +27,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".readActivity"
+            android:name=".ReadActivity"
             android:screenOrientation="portrait" />
     </application>
 

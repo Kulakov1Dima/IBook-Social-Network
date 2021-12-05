@@ -19,8 +19,8 @@ public class CustomDialogFragment extends DialogFragment {
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .setNegativeButton("нет",null)
                 .setPositiveButton("да", (dialog, id) -> {
-                    Intent intent = new Intent(getActivity(),pageRead.class);
-                    intent.putExtra("Npage",readActivity.lastP);
+                    Intent intent = new Intent(getActivity(),PageReadActivity.class);
+                    intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,ReadActivity.lastP);
                     startActivity(intent);                      //переход на экран чтения статей(pdf файл)
             }).create();
 

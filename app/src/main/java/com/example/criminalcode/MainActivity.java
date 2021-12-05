@@ -13,19 +13,24 @@ public class MainActivity extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        buttons();                                                                                  //все кнопки главного Activity
+        ibook();
+        //buttons();                                                                                  //все кнопки главного Activity
     }
 
  void buttons(){
     ImageButton profileButton = findViewById(R.id.profileButton);                                   //кнопка профиля
     profileButton.setOnClickListener(v -> {
-        Intent intent = new Intent(MainActivity.this,profileActivity.class);
+        Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
         startActivity(intent);                                                                      //переход на экран профиля
     });
     ImageButton readButton = findViewById(R.id.readButton);                                         //кнопка чтения статей
     readButton.setOnClickListener(v -> {
-        Intent intent = new Intent(MainActivity.this,readActivity.class);
+        Intent intent = new Intent(MainActivity.this,ReadActivity.class);
         startActivity(intent);                                                                      //переход на экран со статьями уголовного кодекса
     });
     }
-}
+
+void ibook(){
+    Intent intent = new Intent(MainActivity.this,ProfileActivity.class);
+    startActivity(intent);
+}}

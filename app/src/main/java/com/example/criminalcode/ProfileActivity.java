@@ -13,13 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 Экран профиля показаны активность (в минутах), рекомендации и полезные ссылки
 Во варианте закрытого софта: сведения о тарифе pro версии (но наврятли так будет :) )
  */
-public class profileActivity extends AppCompatActivity {
+public class ProfileActivity extends AppCompatActivity {
     SharedPreferences pageL;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        pageL = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
+        pageL = getSharedPreferences(Сonfiguration.CURRENT_PAGE, Context.MODE_PRIVATE);
         customizationActionBar();
         textRead();                                                                                 //функция прогрессбара и вывода номера последней страницы в профиле
         buttons();                                                                                  //все кнопки на активности профиля
@@ -34,24 +34,24 @@ public class profileActivity extends AppCompatActivity {
     void buttons(){
         Button lastPage = findViewById(R.id.button2);
         lastPage.setOnClickListener(v -> {
-            Intent intent = new Intent(profileActivity.this,pageRead.class);
-            intent.putExtra("Npage",pageL.getInt("NpageL",0));
+            Intent intent = new Intent(ProfileActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,pageL.getInt(Сonfiguration.CURRENT_PAGE,0));
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
     }
     void textRead(){                                        //функция прогрессбара и вывода номера последней страницы в профиле
         TextView pageN = findViewById(R.id.textView3);      //страницы в прогрессе чтения
-        String pageСounter = (pageL.getInt("NpageL",0) + 1) +"/"+ pageL.getInt("pageC",0);
-        pageN.setText(pageСounter);
+        String count = (pageL.getInt(Сonfiguration.CURRENT_PAGE,0) + 1) +"/"+ pageL.getInt("pageC",0);
+        pageN.setText(count);
 
-        double maxProgress=pageL.getInt("pageC",0)/100; //переменная равная 1% от всех страниц
+        double maxProgress=pageL.getInt(Сonfiguration.numberOfPages,0)/100; //переменная равная 1% от всех страниц
 
         ProgressBar readPage = findViewById(R.id.progressBar2);
-        readPage.setProgress((int)((pageL.getInt("NpageL",0) + 1)/maxProgress)); //процент прочитанного
+        readPage.setProgress((int)((pageL.getInt(Сonfiguration.CURRENT_PAGE,0) + 1)/maxProgress)); //процент прочитанного
 
         readPage.setOnClickListener(v -> {
-            Intent intent = new Intent(profileActivity.this,pageRead.class);
-            intent.putExtra("Npage",pageL.getInt("NpageL",0));
+            Intent intent = new Intent(ProfileActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,pageL.getInt(Сonfiguration.CURRENT_PAGE,0));
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 

@@ -15,9 +15,9 @@ import java.util.Objects;
 //экран чтения-теоретический материал
 // по моим предположениям в приложении должны открываться PDF файлы
 
-public class readActivity extends AppCompatActivity {
+public class ReadActivity extends AppCompatActivity {
 
-    public static int lastP;
+    static int lastP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,94 +29,94 @@ public class readActivity extends AppCompatActivity {
         actionBar.setHomeButtonEnabled(true);               //включение кнопки назад
         actionBar.setDisplayHomeAsUpEnabled(true);          //отображение кнопки назад
 
-        SharedPreferences pageL = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
-        lastP= pageL.getInt("NpageL",0);
+        SharedPreferences pageL = getSharedPreferences(Сonfiguration.CURRENT_PAGE, Context.MODE_PRIVATE);
+        lastP= pageL.getInt(Сonfiguration.CURRENT_PAGE,0);
         if(lastP>1) {
             CustomDialogFragment dialog = new CustomDialogFragment();
             dialog.show(getSupportFragmentManager(), "custom");
         }
 
 
-        Button chapter1 = (Button) findViewById(R.id.chapter1);
+        Button chapter1 = findViewById(R.id.chapter1);
         chapter1.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",0);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,0);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
-        Button chapter2 = (Button) findViewById(R.id.chapter2);
+        Button chapter2 = findViewById(R.id.chapter2);
         chapter2.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",2);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,2);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter3 = (Button) findViewById(R.id.chapter3);
+        Button chapter3 = findViewById(R.id.chapter3);
         chapter3.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",11);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,11);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter4 = (Button) findViewById(R.id.chapter4);
+        Button chapter4 = findViewById(R.id.chapter4);
         chapter4.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",28);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,28);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter5 = (Button) findViewById(R.id.chapter5);
+        Button chapter5 = findViewById(R.id.chapter5);
         chapter5.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",36);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,36);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter6 = (Button) findViewById(R.id.chapter6);
+        Button chapter6 = findViewById(R.id.chapter6);
         chapter6.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",39);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,39);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter7 = (Button) findViewById(R.id.chapter7);
+        Button chapter7 = findViewById(R.id.chapter7);
         chapter7.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",45);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,45);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter8 = (Button) findViewById(R.id.chapter8);
+        Button chapter8 = findViewById(R.id.chapter8);
         chapter8.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",76);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,76);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter9 = (Button) findViewById(R.id.chapter9);
+        Button chapter9 = findViewById(R.id.chapter9);
         chapter9.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",131);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,131);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter10 = (Button) findViewById(R.id.chapter10);
+        Button chapter10 = findViewById(R.id.chapter10);
         chapter10.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",192);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,192);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter11 = (Button) findViewById(R.id.chapter11);
+        Button chapter11 = findViewById(R.id.chapter11);
         chapter11.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",227);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,227);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-        Button chapter12 = (Button) findViewById(R.id.chapter12);
+        Button chapter12 = findViewById(R.id.chapter12);
         chapter12.setOnClickListener(v -> {
-            Intent intent = new Intent(readActivity.this,pageRead.class);
-            intent.putExtra("Npage",233);
+            Intent intent = new Intent(ReadActivity.this,PageReadActivity.class);
+            intent.putExtra(Сonfiguration.OLD_CURRENT_PAGE,233);
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 

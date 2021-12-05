@@ -16,24 +16,24 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnPageChangeListener;
 
 
-public class pageRead extends AppCompatActivity implements OnPageChangeListener {
+public class PageReadActivity extends AppCompatActivity implements OnPageChangeListener {
 
-    private static SharedPreferences.Editor editor = null;
+    SharedPreferences.Editor editor = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page_read);
 
-        SharedPreferences putPageNumber = getSharedPreferences("NpageL", Context.MODE_PRIVATE);
+        SharedPreferences putPageNumber = getSharedPreferences(Сonfiguration.CURRENT_PAGE, Context.MODE_PRIVATE);
         editor = putPageNumber.edit();
 
         int pageNumber;
-        pageNumber= getIntent().getIntExtra("Npage",0);
+        pageNumber= getIntent().getIntExtra(Сonfiguration.OLD_CURRENT_PAGE,0);
 
-        PDFView pdfView = (PDFView) findViewById(R.id.pdfView);
+        PDFView pdfView = findViewById(R.id.pdfView);
         pdfView
-                .fromAsset("ukodeksrf.pdf")
+                .fromAsset(Сonfiguration.pdfDocument)
                 .defaultPage(pageNumber)
                 .onPageChange(this)
                 .enableAnnotationRendering(true)
@@ -48,16 +48,15 @@ public class pageRead extends AppCompatActivity implements OnPageChangeListener 
     @SuppressLint("SetTextI18n")
     @Override
     public void onPageChanged(int page, int pageCount) {
-        setTitle("Уголовный кодекс");
+        setTitle(R.string.ActionBarTitleName);
         TextView pageN = findViewById(R.id.textView11);
-        pageN.setText((int)(page + 1)+"/"+ pageCount);
+        pageN.setText((page + 1) +"/"+ pageCount);
 
-        editor.putInt("NpageL",page).apply();
-        editor.putInt("pageC",pageCount).apply();
+        editor.putInt(Сonfiguration.CURRENT_PAGE,page).putInt(Сonfiguration.numberOfPages,pageCount).apply();
     }
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == android.R.id.home) {
-            Intent intent = new Intent(pageRead.this, MainActivity.class);
+            Intent intent = new Intent(PageReadActivity.this, MainActivity.class);
             startActivity(intent);  //переход на главную страницу
             return true;
         }
