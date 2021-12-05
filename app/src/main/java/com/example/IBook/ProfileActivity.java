@@ -1,13 +1,12 @@
-package com.example.criminalcode;
+package com.example.IBook;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import androidx.appcompat.app.ActionBar;
+
 import androidx.appcompat.app.AppCompatActivity;
 /*
 Экран профиля показаны активность (в минутах), рекомендации и полезные ссылки
@@ -25,10 +24,6 @@ public class ProfileActivity extends AppCompatActivity {
         buttons();                                                                                  //все кнопки на активности профиля
     }
     void customizationActionBar(){
-        ActionBar actionBar = getSupportActionBar();                                                //получение доступа к ActionBar
-        assert actionBar != null;                                                                   //исключение исключения
-        actionBar.setHomeButtonEnabled(true);                                                       //включение кнопки назад
-        actionBar.setDisplayHomeAsUpEnabled(true);                                                  //отображение кнопки назад
         getSupportActionBar().setTitle("Добро пожаловать user!");                                   //название страницы
     }
     void buttons(){
@@ -55,12 +50,5 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(intent);                      //переход на экран чтения статей(pdf файл)
         });
 
-    }
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            this.finish();
-            return true;
-        }
-        else return super.onOptionsItemSelected(item);
     }
 }
