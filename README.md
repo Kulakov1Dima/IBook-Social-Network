@@ -1,5 +1,5 @@
-# CriminalCode
--Android приложение для обучения статьям уголовного кодекса Российской федерации.
+# IBook
+-Android приложение новой социальной сети.
 # List appearance
 ![image](https://user-images.githubusercontent.com/84613812/137814840-f4cf94dd-d952-45bc-be27-f6545d2e78b6.png)
 ![image](https://user-images.githubusercontent.com/84613812/140219639-45b9ad7d-f6f2-439c-9809-616aac9da068.png)
