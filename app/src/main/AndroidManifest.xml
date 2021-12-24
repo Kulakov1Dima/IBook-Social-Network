@@ -3,29 +3,33 @@
     package="com.example.IBook">
 
     <application
-        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Уголовный кодекс (Тесты)"
+        android:label="Ibook"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CriminalCode">
+        android:theme="@style/Theme.CriminalCode"
+        android:allowBackup="true">
         <activity
-            android:name="com.example.IBook.PageReadActivity"
+            android:name=".PageReadActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.IBook.ProfileActivity"
+            android:name=".ProfileActivity"
             android:exported="false"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="fullSensor" />
         <activity
-            android:name="com.example.IBook.MainActivity"
+            android:name=".MainActivity"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
