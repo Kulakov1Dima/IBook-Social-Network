@@ -4,25 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    >
+    android:layout_height="match_parent">
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.gms.common.SignInButton
-            android:id="@+id/sign_in_button"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="44dp"
-            android:layout_marginTop="88dp"
-            android:layout_marginEnd="44dp"
-            android:layout_marginBottom="88dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/mainName"
+            android:layout_width="302dp"
+            android:layout_height="146dp"
+            android:layout_marginStart="114dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="114dp"
+            android:fontFamily="@font/shadows_into_light_two"
+            android:text="@string/ibook"
+            android:textAlignment="center"
+            android:textColor="#DB851C92"
+            android:textSize="96sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/regPage1"
+            android:layout_width="288dp"
+            android:layout_height="88dp"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="97dp"
+            android:fontFamily="@font/shadows_into_light_two"
+            android:text="@string/registartion"
+            android:textAlignment="center"
+            android:textColor="@color/purple_200"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView9"
+            tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
+
+        <EditText
+            android:id="@+id/phone"
+            android:layout_width="155dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginTop="80dp"
+            android:layout_marginEnd="100dp"
+            android:ems="10"
+            android:hint="+"
+            android:inputType="phone"
+            android:minHeight="48dp"
+            android:textColor="#03A9F4"
+            android:textColorHint="#03A9F4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/regPage1"
+            tools:ignore="SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="148dp"
+            android:layout_height="77dp"
+            android:layout_marginStart="120dp"
+            android:layout_marginEnd="120dp"
+            android:text="Введите номер"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.478"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/phone" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="310dp"
+            android:layout_height="61dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:fontFamily="@font/shadows_into_light_two"
+            android:text="Эта соцсеть в ваших руках!"
+            android:textAlignment="center"
+            android:textColor="@color/purple_500"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mainName" />
+
+        <ImageButton
+            android:id="@+id/imageButton"
+            android:layout_width="96dp"
+            android:layout_height="96dp"
+            android:layout_marginStart="127dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="127dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:srcCompat="@drawable/login_black_48dp"
+            tools:ignore="SpeakableTextPresentCheck" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

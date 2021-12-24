@@ -1,34 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PageReadActivity">
-
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </com.github.barteksc.pdfviewer.PDFView>
-
-    <TextView
-        android:id="@+id/textView11"
-        android:layout_width="415dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="-40dp"
-        android:background="@color/black"
-        android:backgroundTint="#97131010"
-        android:text="@string/_0_0"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:autoSizeTextType="uniform"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/pdfView" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    tools:context=".PageReadActivity"/>
