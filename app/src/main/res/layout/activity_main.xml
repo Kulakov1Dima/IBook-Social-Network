@@ -9,23 +9,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:id="@+id/mainName"
-            android:layout_width="302dp"
-            android:layout_height="146dp"
-            android:layout_marginStart="114dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="114dp"
-            android:fontFamily="@font/shadows_into_light_two"
-            android:text="@string/ibook"
-            android:textAlignment="center"
-            android:textColor="#DB851C92"
-            android:textSize="96sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        android:background="@drawable/mainbackground">
 
         <TextView
             android:id="@+id/regPage1"
@@ -34,11 +19,12 @@
             android:layout_marginStart="97dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="97dp"
+            android:autoText="true"
             android:fontFamily="@font/shadows_into_light_two"
             android:text="@string/registartion"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
-            android:textSize="30sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.507"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,14 +36,15 @@
             android:layout_width="155dp"
             android:layout_height="56dp"
             android:layout_marginStart="100dp"
-            android:layout_marginTop="80dp"
             android:layout_marginEnd="100dp"
+            android:layout_marginBottom="-2dp"
             android:ems="10"
             android:hint="+"
             android:inputType="phone"
             android:minHeight="48dp"
             android:textColor="#03A9F4"
             android:textColorHint="#03A9F4"
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/regPage1"
@@ -69,9 +56,11 @@
             android:layout_height="77dp"
             android:layout_marginStart="120dp"
             android:layout_marginEnd="120dp"
+            android:layout_marginBottom="20dp"
             android:text="Введите номер"
             android:textAlignment="center"
             android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.478"
             app:layout_constraintStart_toStartOf="parent"
@@ -79,19 +68,20 @@
 
         <TextView
             android:id="@+id/textView9"
-            android:layout_width="310dp"
-            android:layout_height="61dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="268dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="180dp"
+            android:layout_marginEnd="50dp"
+            android:autoText="true"
             android:fontFamily="@font/shadows_into_light_two"
             android:text="Эта соцсеть в ваших руках!"
             android:textAlignment="center"
             android:textColor="@color/purple_500"
-            android:textSize="20sp"
+            app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mainName" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ImageButton
             android:id="@+id/imageButton"
@@ -100,6 +90,8 @@
             android:layout_marginStart="127dp"
             android:layout_marginTop="20dp"
             android:layout_marginEnd="127dp"
+            android:layout_marginBottom="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"

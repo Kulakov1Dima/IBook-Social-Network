@@ -19,4 +19,5 @@
     <string name="login_failed">"Login failed"</string>
     <string name="_7">+7</string>
     <string name="title_activity_login">LoginActivity</string>
+    <string name="namePaswdActivity">Введите пароль</string>
 </resources>

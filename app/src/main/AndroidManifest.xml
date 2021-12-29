@@ -3,12 +3,15 @@
     package="com.example.IBook">
 
     <application
+        android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="Ibook"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CriminalCode"
-        android:allowBackup="true">
+        android:theme="@style/Theme.CriminalCode">
+        <activity
+            android:name=".Passwd"
+            android:exported="false" />
         <activity
             android:name=".PageReadActivity"
             android:exported="false" />
