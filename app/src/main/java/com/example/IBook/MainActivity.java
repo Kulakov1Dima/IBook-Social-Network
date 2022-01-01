@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     void nextActivity(){
         ImageButton registration= findViewById(R.id.imageButton);
         registration.setOnClickListener(v -> {
-            SendingPost.sendPost();
+            new SendingPost().execute();
             Intent intent = new Intent(MainActivity.this, Passwd.class);
             startActivity(intent);
         });
