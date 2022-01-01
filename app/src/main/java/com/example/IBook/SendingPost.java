@@ -1,9 +1,7 @@
 package com.example.IBook;
 
+import android.os.AsyncTask;
 import android.util.Log;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -13,9 +11,9 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class SendingPost {
-
-    static void sendPost(){
+public class SendingPost  extends AsyncTask {
+    @Override
+    protected Object doInBackground(Object[] objects){
         MediaType mediaType = MediaType.parse("application/json");
         String url = "https://5sd6aa.deta.dev/";
         OkHttpClient httpClient = new OkHttpClient();
@@ -44,7 +42,7 @@ public class SendingPost {
                 "    \"new\": false\n" +
                 "  },\n" +
                 "  \"request\": {\n" +
-                "    \"command\": \"привет\",\n" +
+                "    \"command\": \"Hello for Android\",\n" +
                 "    \"original_utterance\": \"привет\",\n" +
                 "    \"nlu\": {\n" +
                 "      \"tokens\": [\n" +
@@ -64,7 +62,7 @@ public class SendingPost {
                 .url(url)
                 .post(RequestBody.create(mediaType, jsonStr))
                 .build();
-        Response response = null;
+        Response response;
         try {
             response = httpClient.newCall(request).execute();
             if (response.isSuccessful()) {
@@ -74,5 +72,6 @@ public class SendingPost {
         } catch (IOException e) {
             Log.i("info","error");
         }
+        return null;
     }
 }
