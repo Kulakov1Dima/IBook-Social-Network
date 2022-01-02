@@ -18,23 +18,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         delActionBar();
-        if(getPhone())nextActivity();
+        nextActivity();
     }
     void delActionBar(){
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.hide();
     }
-    boolean getPhone(){
+    String getPhone(){
         TextView number = findViewById(R.id.phone);
-        CharSequence phone =  number.getText();
-        return !phone.equals("");
+        return number.getText().toString();
     }
     void nextActivity(){
         ImageButton registration= findViewById(R.id.imageButton);
         registration.setOnClickListener(v -> {
-            new SendingPost().execute();
-            Intent intent = new Intent(MainActivity.this, Passwd.class);
+            new SendingPost().execute("authorization",getPhone());
+            Intent intent = new Intent(MainActivity.this, PasswdActivity.class);
+            intent.putExtra("PHONE", getPhone());
             startActivity(intent);
         });
     }
