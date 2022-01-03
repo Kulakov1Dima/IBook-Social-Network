@@ -1,6 +1,8 @@
 package com.example.IBook;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -12,7 +14,8 @@ Ibook - приложение соцсети.
 21.10.2021  01:09 Кулаков Дмитрий
  */
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
+
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +38,12 @@ public class MainActivity extends AppCompatActivity {
     void nextActivity(){
         ImageButton registration= findViewById(R.id.imageButton);
         registration.setOnClickListener(v -> {
-            new SendingPost().execute("authorization",getPhone());
+            new SendingPost(this).execute("authorization",getPhone());
+            //Intent intent = new Intent(MainActivity.this, PasswdActivity.class);
+            //startActivity(intent);
         });
+    }
+    public void callingBack(String s){
+        Log.e("server",s);
     }
 }
