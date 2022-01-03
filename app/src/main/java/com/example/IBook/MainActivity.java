@@ -45,11 +45,12 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
 
     void dialogRegistration(){
         AlertDialog.Builder registration = new AlertDialog.Builder(MainActivity.this);
-        registration.setMessage("Вы не зарегестрированны. Хотите зарегистрироваться?")
+        registration.setMessage("Вы не зарегестрированны. Хотите это исправить?")
                 .setCancelable(false)
                 .setPositiveButton("Да", (dialog, which) -> {
                     dialog.cancel();
                     Intent intent = new Intent(MainActivity.this, PasswdActivity.class);
+                    intent.putExtra("phone", getPhone());
                     startActivity(intent);
                 })
                 .setNegativeButton("Нет", (dialog, which) -> finish());
