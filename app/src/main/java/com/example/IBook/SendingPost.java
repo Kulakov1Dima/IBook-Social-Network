@@ -1,5 +1,6 @@
 package com.example.IBook;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 
 import org.json.JSONException;
@@ -13,8 +14,19 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-class SendingPost  extends AsyncTask <String, Void, Void> {
+class SendingPost extends AsyncTask <String, Void, Void> {
+
     String responseStr;
+
+    interface Callback{
+        void callingBack(String s);
+    }
+
+    private Callback callback;
+
+    public SendingPost(Callback callback){
+        this.callback = callback;
+    }
 
     @Override
     protected Void doInBackground(String... strings) {
@@ -44,14 +56,15 @@ class SendingPost  extends AsyncTask <String, Void, Void> {
     }
 
     @Override
-    protected void onPostExecute(Void aVoid) {
+    protected void onPostExecute(Void Void) {
         try {
             JSONObject responseObj = new JSONObject(responseStr);
             JSONObject data= responseObj.getJSONObject("response");
-            if(String.valueOf(data).equals("{\"command\":\"authorization\",\"registration\":false}")) {
+            //if(String.valueOf(data).equals("{\"command\":\"authorization\",\"registration\":false}")) {
                 // как-то нужно перейти на другое активити
-            }
-
+                //startActivity(new Intent(registrationActivity.this, PasswdActivity.class));
+            callback.callingBack(String.valueOf(data));
+            //}
         } catch (JSONException e) {
             e.printStackTrace();
         }
