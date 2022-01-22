@@ -7,7 +7,7 @@
     <string name="user">User</string>
     <string name="ActionBarTitleName">Уголовный кодекс 2021</string>
     <string name="ibook">IBook</string>
-    <string name="registartion">Регистрация/вход</string>
+    <string name="registartion">Авторизация</string>
     <string name="title_activity_main">activity_main</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password</string>

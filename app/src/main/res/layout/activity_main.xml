@@ -4,29 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
 
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/mainbackground">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/mainbackground">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/regPage1"
-            android:layout_width="288dp"
-            android:layout_height="88dp"
-            android:layout_marginStart="97dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="97dp"
+            android:layout_width="244dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="150dp"
+            android:layout_marginEnd="20dp"
             android:autoText="true"
+            android:background="@drawable/avtorization"
             android:fontFamily="@font/shadows_into_light_two"
             android:text="@string/registartion"
             android:textAlignment="center"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/teal_700"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.507"
+            app:layout_constraintHorizontal_bias="0.647"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView9"
             tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
@@ -69,17 +70,18 @@
         <TextView
             android:id="@+id/textView9"
             android:layout_width="268dp"
-            android:layout_height="44dp"
+            android:layout_height="48dp"
             android:layout_marginStart="50dp"
-            android:layout_marginTop="180dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="50dp"
             android:autoText="true"
             android:fontFamily="@font/shadows_into_light_two"
-            android:text="Эта соцсеть в ваших руках!"
+            android:text="Ibook Social Network"
             android:textAlignment="center"
-            android:textColor="@color/purple_500"
+            android:textColor="@color/teal_700"
             app:autoSizeTextType="uniform"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.488"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -93,11 +95,12 @@
             android:layout_marginBottom="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.491"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView4"
             app:srcCompat="@drawable/login_black_48dp"
             tools:ignore="SpeakableTextPresentCheck" />
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
