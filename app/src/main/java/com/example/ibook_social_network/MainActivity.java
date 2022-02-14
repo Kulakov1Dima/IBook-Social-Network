@@ -2,6 +2,7 @@ package com.example.ibook_social_network;
 
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         nextActivityAuthorization();
         findViewById(R.id.regbutton).setOnClickListener(v->{
             Intent intent= new Intent(MainActivity.this,RegistrationActivity.class);

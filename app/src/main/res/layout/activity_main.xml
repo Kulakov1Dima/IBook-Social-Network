@@ -57,11 +57,11 @@
 
     <EditText
         android:id="@+id/editTextPhone"
-        android:layout_width="167dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_marginStart="-250dp"
         android:layout_marginTop="10dp"
-        android:background="#57090808"
+        android:background="#331B7DC8"
         android:ems="10"
         android:inputType="phone"
         android:minHeight="48dp"
@@ -109,11 +109,11 @@
     <EditText
         android:id="@+id/editTextTextPassword"
         style="@style/RegistrationTextStyle"
-        android:layout_width="161dp"
+        android:layout_width="170dp"
         android:layout_height="48dp"
         android:layout_marginStart="-250dp"
         android:layout_marginTop="13dp"
-        android:background="#57090808"
+        android:background="#331B7DC8"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
