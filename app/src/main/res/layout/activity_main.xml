@@ -1,106 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/mainbackground">
+    android:background="@drawable/gradient_background"
+    android:descendantFocusability="beforeDescendants"
+    android:visibility="visible"
+    tools:context=".MainActivity">
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="205dp"
+        android:layout_height="53dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="-30dp"
+        android:fontFamily="@font/aladin"
+        android:text="Авторизация"
+        android:textAlignment="center"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="309dp"
+        android:layout_height="589dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="2dp"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:srcCompat="@drawable/backgroundmain" />
 
-        <TextView
-            android:id="@+id/regPage1"
-            android:layout_width="244dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="150dp"
-            android:layout_marginEnd="20dp"
-            android:autoText="true"
-            android:background="@drawable/avtorization"
-            android:fontFamily="@font/shadows_into_light_two"
-            android:text="@string/registartion"
-            android:textAlignment="center"
-            android:textColor="@color/teal_700"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.647"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView9"
-            tools:ignore="TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck,TextContrastCheck" />
+    <Button
+        android:id="@+id/avtorization"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="-325dp"
+        android:layout_marginBottom="-360dp"
+        android:background="@drawable/buttons"
+        android:foreground="@drawable/ic_arrow_back_black_24dp"
+        android:linksClickable="true"
+        android:longClickable="true"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/imageView2"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <EditText
-            android:id="@+id/phone"
-            android:layout_width="155dp"
-            android:layout_height="56dp"
-            android:layout_marginStart="100dp"
-            android:layout_marginEnd="100dp"
-            android:layout_marginBottom="-2dp"
-            android:ems="10"
-            android:hint="+"
-            android:inputType="phone"
-            android:minHeight="48dp"
-            android:textColor="#03A9F4"
-            android:textColorHint="#03A9F4"
-            app:layout_constraintBottom_toTopOf="@+id/textView4"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/regPage1"
-            tools:ignore="SpeakableTextPresentCheck" />
+    <EditText
+        android:id="@+id/editTextPhone"
+        android:layout_width="167dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="-250dp"
+        android:layout_marginTop="10dp"
+        android:background="#57090808"
+        android:ems="10"
+        android:inputType="phone"
+        android:minHeight="48dp"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:textColor="@color/black"
+        android:typeface="sans"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView2"
+        tools:ignore="SpeakableTextPresentCheck" />
 
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="148dp"
-            android:layout_height="77dp"
-            android:layout_marginStart="120dp"
-            android:layout_marginEnd="120dp"
-            android:layout_marginBottom="20dp"
-            android:text="Введите номер"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/imageButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.478"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/phone" />
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="127dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="-250dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="1100dp"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/aladin"
+        android:text="Телефон"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <TextView
-            android:id="@+id/textView9"
-            android:layout_width="268dp"
-            android:layout_height="48dp"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="50dp"
-            android:autoText="true"
-            android:fontFamily="@font/shadows_into_light_two"
-            android:text="Ibook Social Network"
-            android:textAlignment="center"
-            android:textColor="@color/teal_700"
-            app:autoSizeTextType="uniform"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.488"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="127dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="-250dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="1100dp"
+        android:allowUndo="false"
+        android:elegantTextHeight="true"
+        android:fontFamily="@font/aladin"
+        android:text="Пароль"
+        android:textColor="@color/black"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <ImageButton
-            android:id="@+id/imageButton"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
-            android:layout_marginStart="127dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="127dp"
-            android:layout_marginBottom="50dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.491"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView4"
-            app:srcCompat="@drawable/login_black_48dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <EditText
+        android:id="@+id/editTextTextPassword"
+        style="@style/RegistrationTextStyle"
+        android:layout_width="161dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="-250dp"
+        android:layout_marginTop="13dp"
+        android:background="#57090808"
+        android:ems="10"
+        android:inputType="textPassword"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/textView5"
+        tools:ignore="SpeakableTextPresentCheck" />
 
+    <Button
+        android:id="@+id/regbutton"
+        android:layout_width="226dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="-265dp"
+        android:layout_marginTop="-90dp"
+        android:background="@drawable/big_buttons"
+        android:text="Зарегестрироваться"
+        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
