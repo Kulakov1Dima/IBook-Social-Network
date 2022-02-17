@@ -1,6 +1,7 @@
 package com.example.ibook_social_network;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -47,6 +48,7 @@ class SendingPost extends AsyncTask<String, Void, Void> {
                 Response response = httpClient.newCall(request).execute();
                 assert response.body() != null;
                 responseStr= response.body().string();
+                Log.e("IbookServer",responseStr);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -57,8 +59,10 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void Void) {
         try {
-            JSONObject responseObj = new JSONObject(responseStr);
-            callback.callingBack(String.valueOf(responseObj));
+            if(responseStr != null){
+                JSONObject responseObj = new JSONObject(responseStr);
+                callback.callingBack(String.valueOf(responseObj));
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }

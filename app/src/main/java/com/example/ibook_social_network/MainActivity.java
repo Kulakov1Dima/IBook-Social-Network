@@ -1,7 +1,9 @@
 package com.example.ibook_social_network;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,11 +21,18 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
 
 
+    public static final String APP_PREFERENCES = "accountSettings";
+    public static final String ACCOUNT_PREFERENCES_NAME = "Nickname";
+    public static final String ACCOUNT_PREFERENCES_PASSWORD = "password";
+
+    SharedPreferences mSettings;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         nextActivityAuthorization();
         findViewById(R.id.regbutton).setOnClickListener(v->{
             Intent intent= new Intent(MainActivity.this,RegistrationActivity.class);
@@ -35,11 +44,21 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
      * Переход в мессенджер
      */
     void nextActivityAuthorization(){
-        findViewById(R.id.avtorization).setOnClickListener(v->{
-            if(checkAuthorization()) {
-                new SendingPost(this).execute("authorization",getPhone(),getPassword());
-            }
-        });
+
+        if(mSettings.contains(ACCOUNT_PREFERENCES_NAME) && mSettings.contains(ACCOUNT_PREFERENCES_PASSWORD)) {
+            new SendingPost(this).execute("authorization",mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""),mSettings.getString(ACCOUNT_PREFERENCES_PASSWORD, ""));
+        }
+        else {
+            findViewById(R.id.avtorization).setOnClickListener(v -> {
+                if (checkAuthorization()) {
+                        SharedPreferences.Editor editor = mSettings.edit();
+                        editor.putString(ACCOUNT_PREFERENCES_NAME, getPhone());
+                        editor.putString(ACCOUNT_PREFERENCES_PASSWORD, getPassword());
+                        editor.apply();
+                    new SendingPost(this).execute("authorization", getPhone(), getPassword());
+                }
+            });
+        }
     }
     String getPhone(){
         TextView number = findViewById(R.id.editTextPhone);
@@ -62,12 +81,17 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
 
     @Override
     public void callingBack(String dataResponse) {
-        Log.e("IbookServer",dataResponse);
         if(dataResponse.equals("{\"text\":true}")){
             Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
             startActivity(intent);
+            finish();
         }
-        else dialogRegistration();
+        else {
+            if(dataResponse.equals("{\"text\":false}")){
+                dialogRegistration();
+                mSettings.edit().clear().commit();
+            }
+        }
     }
     void dialogRegistration(){
         AlertDialog.Builder registration = new AlertDialog.Builder(MainActivity.this);
