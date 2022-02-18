@@ -14,6 +14,7 @@
 - И много чего ещё :)
 # List appearance
 ![Screenshot_20220218_194608](https://user-images.githubusercontent.com/84613812/154725944-91aceed1-61ca-4c54-adbc-1c2eafaa76d0.png)
+
 ![Screenshot_20220218_194436](https://user-images.githubusercontent.com/84613812/154725775-5d232e21-8335-4d95-a95a-96464d298cdd.png)
 
 На данный момент реализована авторизация на сервере через приложение.
