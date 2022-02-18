@@ -58,8 +58,9 @@ class SendingPost extends AsyncTask<String, Void, Void> {
             OkHttpClient httpClient = new OkHttpClient();
             String jsonStr = "{\n" +
                     "  \"request\": {\n" +
-                    "    \"command\": \"authorization\",\n" +
+                    "    \"command\": \"sendingMessage\",\n" +
                     "    \"phone\": \"" + strings[1] + "\"\n" +
+                    "    \"phone2\": \"" + strings[2] + "\"\n" +
                     "  },\n" +
                     "  \"version\": \"" + strings[2] + "\"\n" +
                     "}";

@@ -3,9 +3,11 @@ package com.example.ibook_social_network;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.LinearLayout;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -15,7 +17,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 import java.util.Objects;
 
 
-public class MessengerActivity extends AppCompatActivity {
+public class MessengerActivity extends AppCompatActivity implements SendingPost.Callback {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,10 +51,24 @@ public class MessengerActivity extends AppCompatActivity {
     private void showBottomSheetDialog() {
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.add_first_messenge);
-        LinearLayout share = bottomSheetDialog.findViewById(R.id.shareLinearLayout);
-        LinearLayout upload = bottomSheetDialog.findViewById(R.id.phoneLinearLayout);
-        LinearLayout download = bottomSheetDialog.findViewById(R.id.textmessenge);
-        LinearLayout delete = bottomSheetDialog.findViewById(R.id.messenge);
         bottomSheetDialog.show();
+    }
+
+    String getPhone(){
+        TextView number = (TextView)findViewById(R.id.phone);
+        return number.getText().toString();
+    }
+
+    String getMessage(){
+        TextView password = findViewById(R.id.editTextTextPersonName);
+        return password.getText().toString();
+    }
+
+    public void addMessage(View addMessage){
+        new SendingPost(this).execute("sendingMessage", getPhone(), getMessage());
+    }
+    @Override
+    public void callingBack(String dataResponse) {
+        Log.e("IbookServerMessage",dataResponse);
     }
 }

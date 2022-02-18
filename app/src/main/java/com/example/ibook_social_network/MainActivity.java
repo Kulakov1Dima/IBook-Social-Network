@@ -100,7 +100,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
                 .setPositiveButton("Да", (dialog, which) -> {
                     dialog.cancel();
                    Intent intent = new Intent(MainActivity.this, RegistrationActivity.class);
-                   // intent.putExtra("phone", getPhone());
+                   intent.putExtra("phone", getPhone());
                    startActivity(intent);
                 })
                 .setNegativeButton("Нет", (dialog, which) -> finish());

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
@@ -32,12 +33,13 @@
         android:padding="8dp">
 
         <EditText
-            android:id="@+id/editTextPhone2"
+            android:id="@+id/phone"
             android:layout_width="506dp"
-            android:layout_height="59dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="phone"
+            android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
@@ -60,7 +62,7 @@
     <LinearLayout
         android:id="@+id/messenge"
         android:layout_width="match_parent"
-        android:layout_height="104dp"
+        android:layout_height="82dp"
         android:background="?android:attr/selectableItemBackground"
         android:orientation="horizontal"
         android:padding="8dp">
@@ -68,25 +70,31 @@
         <EditText
             android:id="@+id/editTextTextPersonName"
             android:layout_width="wrap_content"
-            android:layout_height="66dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
             android:ems="10"
             android:inputType="textPersonName"
+            android:minHeight="48dp"
             tools:ignore="SpeakableTextPresentCheck" />
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="91dp"
-        android:orientation="vertical">
+        android:layout_height="91dp">
 
         <Button
             android:id="@+id/regbutton"
-            android:layout_width="match_parent"
+            android:layout_width="353dp"
             android:layout_height="61dp"
+            android:layout_marginTop="3dp"
             android:background="@drawable/big_buttons"
+            android:onClick="addMessage"
             android:text="Отправить"
-            android:textColor="@color/white" />
-    </LinearLayout>
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
