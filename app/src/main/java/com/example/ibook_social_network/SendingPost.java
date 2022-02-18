@@ -53,6 +53,29 @@ class SendingPost extends AsyncTask<String, Void, Void> {
                 e.printStackTrace();
             }
         }
+        if(strings[0].equals("sendingMessage")) {
+            MediaType mediaType = MediaType.parse("application/json");
+            OkHttpClient httpClient = new OkHttpClient();
+            String jsonStr = "{\n" +
+                    "  \"request\": {\n" +
+                    "    \"command\": \"authorization\",\n" +
+                    "    \"phone\": \"" + strings[1] + "\"\n" +
+                    "  },\n" +
+                    "  \"version\": \"" + strings[2] + "\"\n" +
+                    "}";
+            Request request = new Request.Builder()
+                    .url(Configuration.url)
+                    .post(RequestBody.create(mediaType, jsonStr))
+                    .build();
+            try {
+                Response response = httpClient.newCall(request).execute();
+                assert response.body() != null;
+                responseStr= response.body().string();
+                Log.e("IbookServer",responseStr);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         return null;
     }
 
