@@ -13,9 +13,7 @@
 - Продумать алгоритм случайных адресов сервера (чтобы адрес сервера никому не был известен)
 - И много чего ещё :)
 # List appearance
-<img width="270" alt="image" src="https://user-images.githubusercontent.com/84613812/154726277-ba7b67cd-b5e9-47ed-b7e4-8449da393d4c.png">
-
-<img width="271" alt="image" src="https://user-images.githubusercontent.com/84613812/154726335-95ac6f91-f077-4bba-ab3b-34d7e311a1a5.png">
+<img width="270" alt="image" src="https://user-images.githubusercontent.com/84613812/154726277-ba7b67cd-b5e9-47ed-b7e4-8449da393d4c.png"> <img width="271" alt="image" src="https://user-images.githubusercontent.com/84613812/154726335-95ac6f91-f077-4bba-ab3b-34d7e311a1a5.png">
 
 На данный момент реализована авторизация на сервере через приложение.
 Ожидается запуск чатов.
