@@ -89,7 +89,6 @@
             android:layout_height="61dp"
             android:layout_marginTop="3dp"
             android:background="@drawable/big_buttons"
-            android:onClick="addMessage"
             android:text="Отправить"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"

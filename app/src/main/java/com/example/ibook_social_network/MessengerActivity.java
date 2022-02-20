@@ -1,12 +1,12 @@
 package com.example.ibook_social_network;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +19,7 @@ import java.util.Objects;
 
 public class MessengerActivity extends AppCompatActivity implements SendingPost.Callback {
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,20 +53,19 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
         bottomSheetDialog.setContentView(R.layout.add_first_messenge);
         bottomSheetDialog.show();
+        bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v-> new SendingPost(this).execute("sendingMessage", getPhone(bottomSheetDialog), getMessage(bottomSheetDialog)));
     }
 
-    String getPhone(){
-        TextView number = (TextView)findViewById(R.id.phone);
+    String getPhone(BottomSheetDialog bottomSheetDialog){
+        TextView number =  bottomSheetDialog.findViewById(R.id.phone);
+        assert number != null;
         return number.getText().toString();
     }
 
-    String getMessage(){
-        TextView password = findViewById(R.id.editTextTextPersonName);
+    String getMessage(BottomSheetDialog bottomSheetDialog){
+        TextView password =  bottomSheetDialog.findViewById(R.id.editTextTextPersonName);
+        assert password != null;
         return password.getText().toString();
-    }
-
-    public void addMessage(View addMessage){
-        new SendingPost(this).execute("sendingMessage", getPhone(), getMessage());
     }
     @Override
     public void callingBack(String dataResponse) {

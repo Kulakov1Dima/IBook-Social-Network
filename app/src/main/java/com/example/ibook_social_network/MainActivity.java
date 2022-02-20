@@ -1,12 +1,12 @@
 package com.example.ibook_social_network;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
 
     SharedPreferences mSettings;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
         else {
             if(dataResponse.equals("{\"text\":false}")){
                 dialogRegistration();
-                mSettings.edit().clear().commit();
+                mSettings.edit().clear().apply();
             }
         }
     }
