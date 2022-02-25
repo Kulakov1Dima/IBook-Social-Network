@@ -7,6 +7,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
@@ -18,64 +19,33 @@ class SendingPost extends AsyncTask<String, Void, Void> {
 
     String responseStr;
 
-    interface Callback{
+    interface Callback {
         void callingBack(String s);
     }
 
     private final Callback callback;
 
-    public SendingPost(Callback callback){
+    public SendingPost(Callback callback) {
         this.callback = callback;
     }
 
     @Override
     protected Void doInBackground(String... strings) {
-        if(strings[0].equals("authorization")) {
-            MediaType mediaType = MediaType.parse("application/json");
-            OkHttpClient httpClient = new OkHttpClient();
-            String jsonStr = "{\n" +
-                    "  \"request\": {\n" +
-                    "    \"command\": \"authorization\",\n" +
-                    "    \"phone\": \"" + strings[1] + "\"\n" +
-                    "  },\n" +
-                    "  \"version\": \"" + strings[2] + "\"\n" +
-                    "}";
-            Request request = new Request.Builder()
-                    .url(Configuration.url)
-                    .post(RequestBody.create(mediaType, jsonStr))
-                    .build();
-            try {
-                Response response = httpClient.newCall(request).execute();
-                assert response.body() != null;
-                responseStr= response.body().string();
-                Log.e("IbookServer",responseStr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
-        if(strings[0].equals("sendingMessage")) {
-            MediaType mediaType = MediaType.parse("application/json");
-            OkHttpClient httpClient = new OkHttpClient();
-            String jsonStr = "{\n" +
-                    "  \"request\": {\n" +
-                    "    \"command\": \"sendingMessage\",\n" +
-                    "    \"phone\": \"" + strings[1] + "\"\n" +
-                    "    \"phone2\": \"" + strings[2] + "\"\n" +
-                    "  },\n" +
-                    "  \"version\": \"" + strings[2] + "\"\n" +
-                    "}";
-            Request request = new Request.Builder()
-                    .url(Configuration.url)
-                    .post(RequestBody.create(mediaType, jsonStr))
-                    .build();
-            try {
-                Response response = httpClient.newCall(request).execute();
-                assert response.body() != null;
-                responseStr= response.body().string();
-                Log.e("IbookServer",responseStr);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+        MediaType mediaType = MediaType.parse("application/json");
+        OkHttpClient httpClient = new OkHttpClient();
+        Config NetworkConfiguration = new Config(strings);
+        Log.e("IbookSendToServer", NetworkConfiguration.jsonStr);
+        String jsonStr = NetworkConfiguration.jsonStr;
+        Request request = new Request.Builder()
+                .url(NetworkConfiguration.url)
+                .post(RequestBody.create(mediaType, jsonStr))
+                .build();
+        try {
+            Response response = httpClient.newCall(request).execute();
+            responseStr = Objects.requireNonNull(response.body()).string();
+            Log.e("IbookServer", responseStr);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
         return null;
     }
@@ -83,13 +53,12 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void Void) {
         try {
-            if(responseStr != null){
+            if (responseStr != null) {
                 JSONObject responseObj = new JSONObject(responseStr);
-                callback.callingBack(String.valueOf(responseObj));
+                callback.callingBack(String.valueOf(responseObj.get("text")));
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
     }
-
 }

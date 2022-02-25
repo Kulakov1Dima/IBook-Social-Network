@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <array name="preloaded_fonts" translatable="false">
-        <item>@font/advent_pro_light</item>
-        <item>@font/aladin</item>
-        <item>@font/delius</item>
+        <item>@font/aclonica</item>
+        <item>@font/allan</item>
+        <item>@font/beth_ellen</item>
+        <item>@font/kelly_slab</item>
+        <item>@font/kurale</item>
+        <item>@font/mako</item>
     </array>
 </resources>

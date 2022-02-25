@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">IBook-Social-Network</string>
-    <string name="todo">TODO</string>
-    <string name="toolbar_title" />
-    <string name="ibookMessengerTitle">Ibook Мессенджер</string>
-    <string name="messegeInfo">Напишите своё первое сообщение!</string>
+    <string name="editPhoneMain">Телефон</string>
+    <string name="editPasswordMain">Пароль</string>
+    <string name="ibookmainimage">IbookMainImage</string>
+    <string name="_7">+7</string>
 </resources>

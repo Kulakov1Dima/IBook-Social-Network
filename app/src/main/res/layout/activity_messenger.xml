@@ -4,46 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/gradient_background"
-    tools:context=".MessengerActivity"
+    tools:context=".MessengerActivity">
 
-
-    >
-
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#57090808"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="1dp">
-
-        <TextView
-            android:id="@+id/toolbar_title"
-            style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/ibookMessengerTitle"
-            android:textColor="@android:color/white"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="15dp" />
-
-    </androidx.appcompat.widget.Toolbar>
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="263dp"
-        android:layout_height="156dp"
-        android:layout_marginBottom="100dp"
-        android:text="@string/messegeInfo"
-        android:textAlignment="center"
-        android:textStyle="italic"
-        app:autoSizeTextType="uniform"
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/messengebutton"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/oval_buttons"
+        android:foreground="@drawable/ic_stat_name"
+        android:onClick="onNewMessageAction"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.954"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="SpeakableTextPresentCheck" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,10 +9,3 @@
         android:endColor = "#8A2285"
         android:type = "linear" />
 </shape>
-
-    <!--<gradient
-        android:angle = "315"
-        android:startColor = "#03A9F4"
-        android:centerColor = "#035BF4"
-        android:endColor = "#30228A"
-        android:type = "linear" />-->
