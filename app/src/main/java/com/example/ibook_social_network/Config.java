@@ -11,7 +11,7 @@ class Config {
     String authorization = "Добро пожаловать!";
     String noAuthorization = "Проверьте правильность ввода телефона или пароля";
     String oldSession = "Ваш пароль или логин устарел";
-
+    String errorServer = "Ошибка сервера";
 
     public Config(String[] dataToServer) {
         jsonStr = "{\n" +

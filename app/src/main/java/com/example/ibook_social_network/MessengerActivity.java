@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
@@ -45,7 +46,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         bottomSheetDialog.setContentView(R.layout.add_first_messenge);
         bottomSheetDialog.show();
         Bundle arguments = getIntent().getExtras();
-        bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v-> new SendingPost(this).execute(" +7"+arguments.get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+","").replaceAll("7",""), getMessage(bottomSheetDialog), "0.1v"));
+        bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v-> new SendingPost(this).execute(" +7"+arguments.get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+7",""), getMessage(bottomSheetDialog), "0.1v"));
     }
 
 
@@ -64,7 +65,11 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
     }
     @Override
     public void callingBack(String dataResponse) {
+        Config ErrorToastConfiguration = new Config();
         if(dataResponse.equals("ok"))saveMyMessengers();
+        else Toast.makeText(getApplicationContext(),
+                ErrorToastConfiguration.errorServer,
+                Toast.LENGTH_SHORT).show();
     }
 
     void saveMyMessengers(){
