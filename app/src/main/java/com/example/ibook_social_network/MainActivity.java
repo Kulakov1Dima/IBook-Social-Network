@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * Ibook - приложение соцсети.
  * 21.10.2021  01:09 Кулаков Дмитрий
- * 0.1 (102)
+ * 0.1 (103)
  */
 
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     public static final String ACCOUNT_PREFERENCES_NAME = "Nickname";
     public static final String ACCOUNT_PREFERENCES_PASSWORD = "password";
 
-    SharedPreferences mSettings;
+    public static SharedPreferences mSettings;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
             intent.putExtra("myPhone", mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""));
             startActivity(intent);
+            finish();
         } else {
             if (checkAuthorization()) {
                 Toast.makeText(getApplicationContext(),

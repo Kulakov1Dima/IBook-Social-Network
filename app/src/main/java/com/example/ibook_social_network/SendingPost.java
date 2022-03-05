@@ -43,7 +43,7 @@ class SendingPost extends AsyncTask<String, Void, Void> {
         try {
             Response response = httpClient.newCall(request).execute();
             responseStr = Objects.requireNonNull(response.body()).string();
-            Log.e("IbookServer", responseStr);
+            Log.e("IbookServer1", responseStr);
         } catch (IOException e) {
             e.printStackTrace();
         }

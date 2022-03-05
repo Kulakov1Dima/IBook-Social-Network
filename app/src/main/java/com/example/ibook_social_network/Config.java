@@ -6,7 +6,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String url = "https://ibooksn.000webhostapp.com/";
+    String url = "https://kulakov.creativityprojectcenter.ru/";
     public String jsonStr;
     String authorization = "Добро пожаловать!";
     String noAuthorization = "Проверьте правильность ввода телефона или пароля";
