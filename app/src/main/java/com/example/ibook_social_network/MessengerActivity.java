@@ -5,13 +5,11 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,33 +28,38 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
     String getNumber = "";
     String textMessage = "";
 
+    /*Применение цвета к панели навигации*/
+
+    public void setStatusBarColor() {
+        Window window = getWindow();
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.BLACK);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
-        setStatusBarColor("#000000");
         viewMessages();
         final int requestCode = 1337;
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
-        am.setRepeating( AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000 , pendingIntent );
+        am.setRepeating( AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),60000 , pendingIntent );
     }
 
     void viewMessages() {
         String[] fileMessages = fileList();
         ListView devisesList = findViewById(R.id.messagesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter(getApplicationContext(), R.layout.list_messange, fileMessages);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_messange, fileMessages);
         devisesList.setAdapter(adapter);
-        devisesList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View itemClicked, int position, long id) {
-                TextView textView = (TextView) itemClicked;
-                Intent intent = new Intent(MessengerActivity.this, Message.class);
-                intent.putExtra("phone", textView.getText().toString());
-                intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
-                startActivity(intent);
-            }
+        devisesList.setOnItemClickListener((parent, itemClicked, position, id) -> {
+            TextView textView = (TextView) itemClicked;
+            Intent intent = new Intent(MessengerActivity.this, Message.class);
+            intent.putExtra("phone", textView.getText().toString());
+            intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
+            startActivity(intent);
         });
     }
 
@@ -86,19 +89,6 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         });
     }
 
-
-    public void setStatusBarColor(String color) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            Window window = getWindow();
-            int statusBarColor = Color.parseColor(color);
-            if (statusBarColor == Color.BLACK && window.getNavigationBarColor() == Color.BLACK) {
-                window.clearFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            } else {
-                window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-            }
-            window.setStatusBarColor(statusBarColor);
-        }
-    }
 
     @Override
     public void callingBack(String dataResponse) {
