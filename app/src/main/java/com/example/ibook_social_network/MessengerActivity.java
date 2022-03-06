@@ -29,7 +29,6 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
     String textMessage = "";
 
     /*Применение цвета к панели навигации*/
-
     public void setStatusBarColor() {
         Window window = getWindow();
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
