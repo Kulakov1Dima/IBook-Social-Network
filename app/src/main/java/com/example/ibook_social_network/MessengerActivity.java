@@ -34,13 +34,8 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.BLACK);
     }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setStatusBarColor();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messenger);
-        viewMessages();
+    /*будильник для опроса сервера*/
+    void server_poll(){
         final int requestCode = 1337;
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(this, AlarmReceiver.class);
@@ -48,22 +43,40 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         am.setRepeating( AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),60000 , pendingIntent );
     }
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        setStatusBarColor();
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_messenger);
+        viewMessages();
+        server_poll();
+    }
+
+    /*просмотр сообщений*/
     void viewMessages() {
         String[] fileMessages = fileList();
         ListView devisesList = findViewById(R.id.messagesList);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_messange, fileMessages);
         devisesList.setAdapter(adapter);
-        devisesList.setOnItemClickListener((parent, itemClicked, position, id) -> {
-            TextView textView = (TextView) itemClicked;
-            Intent intent = new Intent(MessengerActivity.this, Message.class);
-            intent.putExtra("phone", textView.getText().toString());
-            intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
-            startActivity(intent);
-        });
+        devisesList.setOnItemClickListener((parent, itemClicked, position, id) -> openDialogMessage(itemClicked));
+    }
+    /*открытие диалога*/
+    void openDialogMessage(View itemClicked){
+        TextView textView = (TextView) itemClicked;
+        Intent intent = new Intent(MessengerActivity.this, Message.class);
+        intent.putExtra("phone", textView.getText().toString());
+        intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
+        startActivity(intent);
     }
 
     public void onNewMessageAction(View view) {
-        showBottomSheetDialog();
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(R.layout.add_first_messenge);
+        bottomSheetDialog.show();
+        bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v -> {
+            new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+7", ""), getMessage(bottomSheetDialog), "0.1v");
+            bottomSheetDialog.cancel();
+        });
     }
 
     String getPhone(BottomSheetDialog bottomSheetDialog) {
@@ -77,17 +90,6 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         textMessage = Objects.requireNonNull(password).getText().toString();
         return textMessage;
     }
-
-    private void showBottomSheetDialog() {
-        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
-        bottomSheetDialog.setContentView(R.layout.add_first_messenge);
-        bottomSheetDialog.show();
-        bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v -> {
-            new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+7", ""), getMessage(bottomSheetDialog), "0.1v");
-            bottomSheetDialog.cancel();
-        });
-    }
-
 
     @Override
     public void callingBack(String dataResponse) {
