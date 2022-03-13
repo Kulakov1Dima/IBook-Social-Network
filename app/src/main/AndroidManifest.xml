@@ -11,13 +11,18 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.IBookSocialNetwork">
+        android:theme="@style/Theme.IBookSocialNetwork"
+        android:usesCleartextTraffic="true">
+        <service
+            android:name=".IbookMessengerService"
+            android:enabled="true"
+            android:exported="false" />
+
         <activity
             android:name=".Message"
             android:exported="false" />
@@ -38,9 +43,12 @@
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-        <receiver
-            android:name="AlarmReceiver"
+
+        <receiver android:name=".BootIBookService"
             android:exported="false">
+            <intent-filter >
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+            </intent-filter>
         </receiver>
 
     </application>

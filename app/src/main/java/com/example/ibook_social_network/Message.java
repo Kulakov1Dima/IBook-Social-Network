@@ -1,8 +1,10 @@
 package com.example.ibook_social_network;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
@@ -23,20 +25,32 @@ public class Message extends AppCompatActivity implements SendingPost.Callback {
 
     private String textMessage;
 
+    private Runnable badTimeUpdater = new Runnable() {
+        @Override
+        public void run() {
+            viewMessages(getIntent().getExtras().get("phone").toString());
+            mHandler.postDelayed(this, 5000);
+        }
+    };
+
+    private Handler mHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenge);
         setStatusBarColor("#000000");
-        Toolbar messageToolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(messageToolbar);
         TextView textView = findViewById(R.id.textView3);
         textView.setText(getIntent().getExtras().get("phone").toString());
         viewMessages(getIntent().getExtras().get("phone").toString());
         findViewById(R.id.button2).setOnClickListener(v -> {
+            stopService(new Intent(this, IbookMessengerService.class));
             new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myMessage").toString(), getIntent().getExtras().get("phone").toString().replaceAll("\\+7", ""), getMessage(), "0.1v");
+            startService(new Intent(this, IbookMessengerService.class));
         });
+        mHandler.removeCallbacks(badTimeUpdater);
+        mHandler.postDelayed(badTimeUpdater, 1000);
     }
+
 
 
     public void setStatusBarColor(String color) {
@@ -77,6 +91,7 @@ public class Message extends AppCompatActivity implements SendingPost.Callback {
     String getMessage() {
         TextView password = findViewById(R.id.editTextTextPersonName2);
         textMessage =Objects.requireNonNull(password).getText().toString();
+        password.setText("");
         return textMessage;
     }
 

@@ -15,7 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 /**
  * Ibook - приложение соцсети.
  * 21.10.2021  01:09 Кулаков Дмитрий
- * 0.1 (103)
+ * 0.1 (104)
  */
 
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
@@ -95,6 +95,8 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
             intent.putExtra("myPhone", mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""));
             startActivity(intent);
+            stopService(new Intent(this, IbookMessengerService.class));
+            startService(new Intent(this, IbookMessengerService.class));
             finish();
         } else {
             if (checkAuthorization()) {

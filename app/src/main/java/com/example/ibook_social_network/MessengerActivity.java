@@ -1,11 +1,9 @@
 package com.example.ibook_social_network;
 
-import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
@@ -34,23 +32,25 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.BLACK);
     }
-    /*будильник для опроса сервера*/
-    void server_poll(){
-        final int requestCode = 1337;
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this.getApplicationContext(), requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
-        am.setRepeating( AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),60000 , pendingIntent );
-    }
 
+    private Handler mHandler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setStatusBarColor();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messenger);
         viewMessages();
-        server_poll();
+        mHandler.removeCallbacks(badTimeUpdater);
+        mHandler.postDelayed(badTimeUpdater, 10000);
     }
+
+    private Runnable badTimeUpdater = new Runnable() {
+        @Override
+        public void run() {
+            viewMessages();
+            mHandler.postDelayed(this, 5000);
+        }
+    };
 
     /*просмотр сообщений*/
     void viewMessages() {
@@ -74,6 +74,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         bottomSheetDialog.setContentView(R.layout.add_first_messenge);
         bottomSheetDialog.show();
         bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v -> {
+            stopService(new Intent(this, IbookMessengerService.class));
             new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+7", ""), getMessage(bottomSheetDialog), "0.1v");
             bottomSheetDialog.cancel();
         });
@@ -98,6 +99,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         else Toast.makeText(getApplicationContext(),
                 ErrorToastConfiguration.errorServer,
                 Toast.LENGTH_SHORT).show();
+        startService(new Intent(this, IbookMessengerService.class));
     }
 
     void saveMyMessengers() {
