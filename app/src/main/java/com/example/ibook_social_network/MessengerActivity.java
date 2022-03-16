@@ -26,23 +26,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
     String getNumber = "";
     String textMessage = "";
 
-    /*Применение цвета к панели навигации*/
-    public void setStatusBarColor() {
-        Window window = getWindow();
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
-        window.setStatusBarColor(Color.BLACK);
-    }
-
     private Handler mHandler = new Handler();
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        setStatusBarColor();
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_messenger);
-        viewMessages();
-        mHandler.removeCallbacks(badTimeUpdater);
-        mHandler.postDelayed(badTimeUpdater, 10000);
-    }
 
     private Runnable badTimeUpdater = new Runnable() {
         @Override
@@ -52,13 +36,22 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         }
     };
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        Config graphicsConfiguration = new Config();
+        graphicsConfiguration.setStatusBarColor(getWindow());
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_messenger);
+        viewMessages();
+        mHandler.removeCallbacks(badTimeUpdater);
+        mHandler.postDelayed(badTimeUpdater, 10000);
+    }
     /*просмотр сообщений*/
     void viewMessages() {
-        String[] fileMessages = fileList();
-        ListView devisesList = findViewById(R.id.messagesList);
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_messange, fileMessages);
-        devisesList.setAdapter(adapter);
-        devisesList.setOnItemClickListener((parent, itemClicked, position, id) -> openDialogMessage(itemClicked));
+        ListView messagesList = findViewById(R.id.messagesList);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getApplicationContext(), R.layout.list_messange, fileList());
+        messagesList.setAdapter(adapter);
+        messagesList.setOnItemClickListener((parent, itemClicked, position, id) -> openDialogMessage(itemClicked));
     }
     /*открытие диалога*/
     void openDialogMessage(View itemClicked){
@@ -74,7 +67,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         bottomSheetDialog.setContentView(R.layout.add_first_messenge);
         bottomSheetDialog.show();
         bottomSheetDialog.findViewById(R.id.regbutton).setOnClickListener(v -> {
-            stopService(new Intent(this, IbookMessengerService.class));
+            //stopService(new Intent(this, IbookMessengerService.class)); не работает на Android 8
             new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myPhone").toString(), getPhone(bottomSheetDialog).replaceAll("\\+7", ""), getMessage(bottomSheetDialog), "0.1v");
             bottomSheetDialog.cancel();
         });
@@ -99,7 +92,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         else Toast.makeText(getApplicationContext(),
                 ErrorToastConfiguration.errorServer,
                 Toast.LENGTH_SHORT).show();
-        startService(new Intent(this, IbookMessengerService.class));
+        //startService(new Intent(this, IbookMessengerService.class)); не работает на Android 8
     }
 
     void saveMyMessengers() {

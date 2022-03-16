@@ -1,5 +1,9 @@
 package com.example.ibook_social_network;
 
+import android.graphics.Color;
+import android.view.Window;
+import android.view.WindowManager;
+
 class Config {
     byte lengthLogin = 10;
     byte lengthPassword = 6;
@@ -12,7 +16,7 @@ class Config {
     String noAuthorization = "Проверьте правильность ввода телефона или пароля";
     String oldSession = "Ваш пароль или логин устарел";
     String errorServer = "Ошибка сервера";
-
+    //все запоросы приложения на сервер вот в таком виде:
     public Config(String[] dataToServer) {
         jsonStr = "{\n" +
                 "  \"request\": {\n" +
@@ -25,4 +29,10 @@ class Config {
 
     Config() {
     }
+    /*Применение цвета к панели навигации*/
+    public void setStatusBarColor(Window window) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+        window.setStatusBarColor(Color.BLACK);
+    }
+
 }

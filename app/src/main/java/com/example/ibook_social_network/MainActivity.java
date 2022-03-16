@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
 
+    /*Постоянные настройки пользователя*/
     public static final String APP_PREFERENCES = "accountSettings";
     public static final String ACCOUNT_PREFERENCES_NAME = "Nickname";
     public static final String ACCOUNT_PREFERENCES_PASSWORD = "password";
@@ -34,12 +35,12 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
         checkDataLastAuthorization();
         autocorrectPhone();
     }
-
+    /*установка формата ввода телефона*/
     void autocorrectPhone() {
         EditText phone = findViewById(R.id.editTextPhone);
         phone.addTextChangedListener(new PhoneNumberFormattingTextWatcher());
     }
-
+    /*получение телефона*/
     String getPhone() {
         EditText phone = findViewById(R.id.editTextPhone);
         return phone.getText()
@@ -47,44 +48,44 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
                 .replaceAll(" ", "")
                 .replaceAll("\\(", "")
                 .replaceAll("\\)", "")
-                .replaceAll("-", "");
+                .replaceAll("-", "");   //очистка от ненужных символов, созданных в функции autocorrectPhone()
     }
-
+    /*получение пароля*/
     String getPassword() {
         TextView password = findViewById(R.id.editTextTextPassword);
         return password.getText().toString();
     }
-
+    /*проверка длины введённых данных*/
     boolean checkAuthorization() {
         Config ErrorToastConfiguration = new Config();
         if (!(getPhone().length() == ErrorToastConfiguration.lengthLogin)) {
             Toast.makeText(getApplicationContext(),
                     ErrorToastConfiguration.errorPhone,
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show(); //неверное количество символов телефона
         }
         if (getPassword().length() < ErrorToastConfiguration.lengthPassword) {
             Toast.makeText(getApplicationContext(),
                     ErrorToastConfiguration.errorPassword,
-                    Toast.LENGTH_SHORT).show();
+                    Toast.LENGTH_SHORT).show(); //неверное количество символов пароля
         }
         return (getPhone().length() == ErrorToastConfiguration.lengthLogin) &&
-                getPassword().length() >= ErrorToastConfiguration.lengthPassword;
+                getPassword().length() >= ErrorToastConfiguration.lengthPassword;   // если длина вводимых строк совпадает возращает true
     }
-
+    /*функция, вызываемая при нажатии кнопки*/
     public void authorization(View view) {
         Config ErrorToastConfiguration = new Config();
         if (checkAuthorization()) {
             Toast.makeText(getApplicationContext(),
                     ErrorToastConfiguration.waitMessage,
                     Toast.LENGTH_SHORT).show();
-            SharedPreferences.Editor editor = mSettings.edit();
+            SharedPreferences.Editor editor = mSettings.edit();        //запись логина и пароля для автоматической авторизации (checkDataLastAuthorization())
             editor.putString(ACCOUNT_PREFERENCES_NAME, getPhone());
             editor.putString(ACCOUNT_PREFERENCES_PASSWORD, getPassword());
             editor.apply();
             new SendingPost(this).execute("authorization", getPhone(), getPassword(), "1.0v");
         }
     }
-
+    //ответ от сервера
     @Override
     public void callingBack(String dataResponse) {
         Config ErrorToastConfiguration = new Config();
@@ -92,19 +93,16 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             Toast.makeText(getApplicationContext(),
                     ErrorToastConfiguration.authorization,
                     Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
-            intent.putExtra("myPhone", mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""));
-            startActivity(intent);
-            stopService(new Intent(this, IbookMessengerService.class));
-            startService(new Intent(this, IbookMessengerService.class));
+            startIbookService();
+            startMessenger();
             finish();
         } else {
-            if (checkAuthorization()) {
+            if (checkAuthorization()) { //неверный логин или пароль
                 Toast.makeText(getApplicationContext(),
                         ErrorToastConfiguration.noAuthorization,
                         Toast.LENGTH_SHORT).show();
             }
-            else{
+            else{ //checkDataLastAuthorization() получила устаревший логин и пароль
                 Toast.makeText(getApplicationContext(),
                         ErrorToastConfiguration.oldSession,
                         Toast.LENGTH_SHORT).show();
@@ -112,11 +110,22 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             mSettings.edit().clear().apply();
         }
     }
-
+    /*автоматическая авторизация*/
     void checkDataLastAuthorization() {
         if (mSettings.contains(ACCOUNT_PREFERENCES_NAME) && mSettings.contains(ACCOUNT_PREFERENCES_PASSWORD)) {
             new SendingPost(this).execute("authorization", mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""), mSettings.getString(ACCOUNT_PREFERENCES_PASSWORD, ""), "1.0v");
         }
+    }
+
+    void startMessenger(){
+        Intent intent = new Intent(MainActivity.this, MessengerActivity.class);
+        intent.putExtra("myPhone", mSettings.getString(ACCOUNT_PREFERENCES_NAME, ""));
+        startActivity(intent);
+    }
+
+    void startIbookService(){
+        stopService(new Intent(this, IbookMessengerService.class));   //остановка фоновой службы опроса сервера (на случай если она уже была запущена)
+        startService(new Intent(this, IbookMessengerService.class));  //запуск
     }
 
 }

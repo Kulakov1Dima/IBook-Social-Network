@@ -43,9 +43,9 @@ public class Message extends AppCompatActivity implements SendingPost.Callback {
         textView.setText(getIntent().getExtras().get("phone").toString());
         viewMessages(getIntent().getExtras().get("phone").toString());
         findViewById(R.id.button2).setOnClickListener(v -> {
-            stopService(new Intent(this, IbookMessengerService.class));
+            //stopService(new Intent(this, IbookMessengerService.class));
             new SendingPost(this).execute(" +7" + getIntent().getExtras().get("myMessage").toString(), getIntent().getExtras().get("phone").toString().replaceAll("\\+7", ""), getMessage(), "0.1v");
-            startService(new Intent(this, IbookMessengerService.class));
+            //startService(new Intent(this, IbookMessengerService.class));
         });
         mHandler.removeCallbacks(badTimeUpdater);
         mHandler.postDelayed(badTimeUpdater, 1000);
