@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             Toast.makeText(getApplicationContext(),
                     ErrorToastConfiguration.authorization,
                     Toast.LENGTH_SHORT).show();
-            startIbookService();
             startMessenger();
+            startIbookService();
             finish();
         } else {
             if (checkAuthorization()) { //неверный логин или пароль

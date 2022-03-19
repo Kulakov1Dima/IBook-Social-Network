@@ -32,7 +32,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         @Override
         public void run() {
             viewMessages();
-            mHandler.postDelayed(this, 5000);
+            mHandler.postDelayed(this, 2000);
         }
     };
 
@@ -44,7 +44,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         setContentView(R.layout.activity_messenger);
         viewMessages();
         mHandler.removeCallbacks(badTimeUpdater);
-        mHandler.postDelayed(badTimeUpdater, 10000);
+        mHandler.postDelayed(badTimeUpdater, 1000);
     }
     /*просмотр сообщений*/
     void viewMessages() {

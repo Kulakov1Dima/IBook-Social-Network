@@ -127,6 +127,7 @@
         android:text="@string/_7"
         android:textAlignment="textEnd"
         android:textColor="#E65100"
+        app:autoSizeTextType="uniform"
         app:layout_constraintBottom_toBottomOf="@+id/chip0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/editTextPhone"
