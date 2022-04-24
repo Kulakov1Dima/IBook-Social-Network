@@ -10,7 +10,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String url = "http://f0640931.xsph.ru/";
+    String url = "http://f0646895.xsph.ru/";
     public String jsonStr;
     String authorization = "Добро пожаловать!";
     String noAuthorization = "Проверьте правильность ввода телефона или пароля";

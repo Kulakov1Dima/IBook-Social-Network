@@ -57,7 +57,7 @@ public class IbookMessengerService extends Service implements SendingPost.Callba
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        sendNotification("Ibook Service started", "Ibook Service", "получение сообщений: включено");
+        //sendNotification("Ibook Service started", "Ibook Service", "получение сообщений: включено");
         return Service.START_STICKY;
     }
 
