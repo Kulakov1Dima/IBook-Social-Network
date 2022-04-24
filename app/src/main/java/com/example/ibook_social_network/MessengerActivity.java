@@ -1,13 +1,10 @@
 package com.example.ibook_social_network;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -72,7 +69,6 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
             bottomSheetDialog.cancel();
         });
     }
-
     String getPhone(BottomSheetDialog bottomSheetDialog) {
         TextView number = bottomSheetDialog.findViewById(R.id.phone);
         getNumber = Objects.requireNonNull(number).getText().toString();
@@ -119,6 +115,10 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
         startActivity(intent);
         viewMessages();
+    }
+    public void onSettingsAction(View view) {
+        Intent intent = new Intent(MessengerActivity.this, SettingActivity.class);
+        startActivity(intent);
     }
 
 }

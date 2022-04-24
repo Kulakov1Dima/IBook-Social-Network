@@ -91,7 +91,7 @@ public class IbookMessengerService extends Service implements SendingPost.Callba
                 PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
                 NotificationCompat.Builder notificationBuilder =
                         new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID1)
-                                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                                .setSmallIcon(R.mipmap.ic_launcher_foreground)
                                 .setWhen(System.currentTimeMillis())
                                 .setContentIntent(pendingIntent)
                                 .setContentTitle(String.valueOf(responseObj.get("number")))
@@ -129,7 +129,7 @@ public class IbookMessengerService extends Service implements SendingPost.Callba
         PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, intent, PendingIntent.FLAG_IMMUTABLE);
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(getApplicationContext(), CHANNEL_ID)
-                        .setSmallIcon(R.drawable.ic_launcher_foreground)
+                        .setSmallIcon(R.mipmap.ic_launcher_foreground)
                         .setContentIntent(pendingIntent)
                         .setContentTitle(Title)
                         .setContentText(Text);

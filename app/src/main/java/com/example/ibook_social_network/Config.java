@@ -26,6 +26,8 @@ class Config {
                 "  \"version\": \"" + dataToServer[2] + "\"\n" +
                 "}";
     }
+    //локальный сервер
+    String localUrl = "http://localhost:6002/swagger/index.html";
 
     Config() {
     }
