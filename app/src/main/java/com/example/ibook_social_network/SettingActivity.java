@@ -1,8 +1,9 @@
 package com.example.ibook_social_network;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 public class SettingActivity extends AppCompatActivity {
 
@@ -12,5 +13,6 @@ public class SettingActivity extends AppCompatActivity {
         graphicsConfiguration.setStatusBarColor(getWindow());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+        RecyclerView settings = (RecyclerView)findViewById(R.id.settings);
     }
 }
