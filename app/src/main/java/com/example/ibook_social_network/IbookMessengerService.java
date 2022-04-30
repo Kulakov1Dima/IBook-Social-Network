@@ -100,7 +100,7 @@ public class IbookMessengerService extends Service implements SendingPost.Callba
                 createChannelIfNeeded1(notificationManager1);
                 notificationManager1.notify(NOTIFY_ID1, notificationBuilder.build());
 
-                Message.takeMyMessengers(String.valueOf(responseObj.get("number")).replaceAll(" ", ""), String.valueOf(responseObj.get("message")), this);
+                MyMessage.takeMyMessengers(String.valueOf(responseObj.get("number")).replaceAll(" ", ""), String.valueOf(responseObj.get("message")), this);
 
             } catch (JSONException e) {
                 e.printStackTrace();

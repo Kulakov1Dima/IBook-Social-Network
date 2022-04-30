@@ -53,7 +53,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
     /*открытие диалога*/
     void openDialogMessage(View itemClicked){
         TextView textView = (TextView) itemClicked;
-        Intent intent = new Intent(MessengerActivity.this, Message.class);
+        Intent intent = new Intent(MessengerActivity.this, MyMessage.class);
         intent.putExtra("phone", textView.getText().toString());
         intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
         startActivity(intent);
@@ -110,7 +110,7 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
                 Toast.makeText(this, ex.getMessage(), Toast.LENGTH_SHORT).show();
             }
         }
-        Intent intent = new Intent(MessengerActivity.this, Message.class);
+        Intent intent = new Intent(MessengerActivity.this, MyMessage.class);
         intent.putExtra("phone", getNumber);
         intent.putExtra("myMessage", getIntent().getExtras().get("myPhone").toString());
         startActivity(intent);

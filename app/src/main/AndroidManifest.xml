@@ -21,6 +21,9 @@
         android:theme="@style/Theme.IBookSocialNetwork"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".MyMessage"
+            android:exported="false" />
+        <activity
             android:name=".SettingActivity"
             android:exported="false" />
 
@@ -29,9 +32,6 @@
             android:enabled="true"
             android:exported="false" />
 
-        <activity
-            android:name=".Message"
-            android:exported="false" />
         <activity
             android:name=".MessengerActivity"
             android:exported="false" />
