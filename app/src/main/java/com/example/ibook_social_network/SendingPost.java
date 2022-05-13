@@ -36,20 +36,25 @@ class SendingPost extends AsyncTask<String, Void, Void> {
 
         Config NetworkConfiguration = new Config(strings);
         String jsonStr;
+        String url;
+        Request request;
 
         if(strings[0].equals("authorization")){
             jsonStr = NetworkConfiguration.jsonAuthorization;
+            url = NetworkConfiguration.authUrl;
+            Log.e("Server url", url);
+            request = new Request.Builder()
+                    .url(url)
+                    .post(RequestBody.create(mediaType, jsonStr))
+                    .build();
         }
         else{
             jsonStr = NetworkConfiguration.jsonStr;
+            request = new Request.Builder()
+                    .url(NetworkConfiguration.url)
+                    .post(RequestBody.create(mediaType, jsonStr))
+                    .build();
         }
-        Log.d("IbookServer", NetworkConfiguration.url);
-        Log.e("IbookSendToServer", jsonStr);
-
-        Request request = new Request.Builder()
-                .url(NetworkConfiguration.url)
-                .post(RequestBody.create(mediaType, jsonStr))
-                .build();
         try {
             Response response = httpClient.newCall(request).execute();
             responseStr = Objects.requireNonNull(response.body()).string();
@@ -63,13 +68,11 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void Void) {
         try {
-            if(responseStr.equals("Сервер работает!"))callback.callingBack("true");
-            else {
                 if (responseStr != null) {
                     JSONObject responseObj = new JSONObject(responseStr);
-                    callback.callingBack(String.valueOf(responseObj.get("text")));
+                    callback.callingBack(String.valueOf(responseObj.has("access_token")));
                 }
-            }
+               else callback.callingBack("false");
         } catch (JSONException e) {
             e.printStackTrace();
         }

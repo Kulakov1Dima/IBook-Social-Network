@@ -10,8 +10,9 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String defaultUrl = "http://f0646895.xsph.ru/";
+    String defaultUrl = "http://192.168.0.104:6005/";
     String url = MainActivity.get_settings_server();
+    String authUrl;
     public String jsonStr;
     public String jsonAuthorization;
     String authorization = "Добро пожаловать!";
@@ -27,14 +28,8 @@ class Config {
                 "  },\n" +
                 "  \"version\": \"" + dataToServer[2] + "\"\n" +
                 "}";
-        jsonAuthorization =
-                "<form method=\"POST\" action=\"http://192.168.0.101:6005/auth/token\">\n" +
-                        "<h1>accept= \"application/json\"</h1>\n"+
-                        "<h1>Content-Type= \"multipart/form-data\"</h1>\n"+
-                        "<p>username=\"+79270969849\"</p>\n"+
-                        "<p>password=\"ibook1422\"</p>\n"+
-                        "<p>scopes=\"\"</p>\n"+
-                        "</form>";
+        jsonAuthorization = "\'[\"msgReader\"]\'";
+        authUrl = url+"auth/token/data_as_body?username=%2B7"+dataToServer[1]+"&password="+dataToServer[2];
     }
     Config() {
     }
