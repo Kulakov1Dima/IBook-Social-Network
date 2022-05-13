@@ -33,9 +33,19 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... strings) {
         MediaType mediaType = MediaType.parse("application/json");
         OkHttpClient httpClient = new OkHttpClient();
+
         Config NetworkConfiguration = new Config(strings);
-        Log.e("IbookSendToServer", NetworkConfiguration.jsonStr);
-        String jsonStr = NetworkConfiguration.jsonStr;
+        String jsonStr;
+
+        if(strings[0].equals("authorization")){
+            jsonStr = NetworkConfiguration.jsonAuthorization;
+        }
+        else{
+            jsonStr = NetworkConfiguration.jsonStr;
+        }
+        Log.d("IbookServer", NetworkConfiguration.url);
+        Log.e("IbookSendToServer", jsonStr);
+
         Request request = new Request.Builder()
                 .url(NetworkConfiguration.url)
                 .post(RequestBody.create(mediaType, jsonStr))
@@ -53,9 +63,12 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     @Override
     protected void onPostExecute(Void Void) {
         try {
-            if (responseStr != null) {
-                JSONObject responseObj = new JSONObject(responseStr);
-                callback.callingBack(String.valueOf(responseObj.get("text")));
+            if(responseStr.equals("Сервер работает!"))callback.callingBack("true");
+            else {
+                if (responseStr != null) {
+                    JSONObject responseObj = new JSONObject(responseStr);
+                    callback.callingBack(String.valueOf(responseObj.get("text")));
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

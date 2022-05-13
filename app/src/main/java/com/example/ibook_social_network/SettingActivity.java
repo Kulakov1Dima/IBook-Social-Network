@@ -1,28 +1,32 @@
 package com.example.ibook_social_network;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 public class SettingActivity extends AppCompatActivity {
-    private RecyclerView numbersList;
-    private NumbersAdapter numbersAdapter;
+    public static final String APP_PREFERENCES = "accountSettings";
+    public static final String APP_PREFERENCES_URL = "server_settings";
+    public static SharedPreferences mSettings;
+    TextView address;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        mSettings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         Config graphicsConfiguration = new Config();
         graphicsConfiguration.setStatusBarColor(getWindow());
         super.onCreate(savedInstanceState);
+        Config NetworkConfiguration = new Config();
         setContentView(R.layout.activity_setting);
-        numbersList = (RecyclerView)findViewById(R.id.settings);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        numbersList.setLayoutManager(layoutManager);
-
-        numbersList.setHasFixedSize(true);
-
-        numbersAdapter = new NumbersAdapter(100);
-        numbersList.setAdapter(numbersAdapter);
+        address = findViewById(R.id.address);
+        address.setText(NetworkConfiguration.url);
+    }
+    public void addAddress(View view) {
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString(APP_PREFERENCES_URL, address.getText().toString());
+        editor.apply();
     }
 }

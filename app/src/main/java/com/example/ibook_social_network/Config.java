@@ -10,8 +10,10 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String url = "http://f0646895.xsph.ru/";
+    String defaultUrl = "http://f0646895.xsph.ru/";
+    String url = MainActivity.get_settings_server();
     public String jsonStr;
+    public String jsonAuthorization;
     String authorization = "Добро пожаловать!";
     String noAuthorization = "Проверьте правильность ввода телефона или пароля";
     String oldSession = "Ваш пароль или логин устарел";
@@ -25,10 +27,15 @@ class Config {
                 "  },\n" +
                 "  \"version\": \"" + dataToServer[2] + "\"\n" +
                 "}";
+        jsonAuthorization =
+                "<form method=\"POST\" action=\"http://192.168.0.101:6005/auth/token\">\n" +
+                        "<h1>accept= \"application/json\"</h1>\n"+
+                        "<h1>Content-Type= \"multipart/form-data\"</h1>\n"+
+                        "<p>username=\"+79270969849\"</p>\n"+
+                        "<p>password=\"ibook1422\"</p>\n"+
+                        "<p>scopes=\"\"</p>\n"+
+                        "</form>";
     }
-    //локальный сервер
-    String localUrl = "http://localhost:6002/swagger/index.html";
-
     Config() {
     }
     /*Применение цвета к панели навигации*/
@@ -36,5 +43,4 @@ class Config {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
         window.setStatusBarColor(Color.BLACK);
     }
-
 }
