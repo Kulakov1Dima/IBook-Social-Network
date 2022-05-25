@@ -10,7 +10,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String defaultUrl = "http://192.168.0.104:6005/";
+    String defaultUrl = "http://192.168.43.149:6005/";
     String url = MainActivity.get_settings_server();
     String authUrl;
     public String jsonStr;
