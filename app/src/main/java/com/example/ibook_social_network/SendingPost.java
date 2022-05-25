@@ -37,16 +37,21 @@ class SendingPost extends AsyncTask<String, Void, Void> {
         Config NetworkConfiguration = new Config(strings);
         String jsonStr;
         String url;
-        Request request;
+        Request request = null;
 
         if(strings[0].equals("authorization")){
             jsonStr = NetworkConfiguration.jsonAuthorization;
             url = NetworkConfiguration.authUrl;
             Log.e("Server url", url);
-            request = new Request.Builder()
-                    .url(url)
-                    .post(RequestBody.create(mediaType, jsonStr))
-                    .build();
+            try {
+                request = new Request.Builder()
+                        .url(url)
+                        .post(RequestBody.create(mediaType, jsonStr))
+                        .build();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
         }
         else{
             jsonStr = NetworkConfiguration.jsonStr;
@@ -56,9 +61,11 @@ class SendingPost extends AsyncTask<String, Void, Void> {
                     .build();
         }
         try {
-            Response response = httpClient.newCall(request).execute();
-            responseStr = Objects.requireNonNull(response.body()).string();
-            Log.e("IbookServer1", responseStr);
+            if(request!=null) {
+                Response response = httpClient.newCall(request).execute();
+                responseStr = Objects.requireNonNull(response.body()).string();
+                Log.e("IbookServer1", responseStr);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -72,7 +79,7 @@ class SendingPost extends AsyncTask<String, Void, Void> {
                     JSONObject responseObj = new JSONObject(responseStr);
                     callback.callingBack(String.valueOf(responseObj.has("access_token")));
                 }
-               else callback.callingBack("false");
+               else callback.callingBack("404");
         } catch (JSONException e) {
             e.printStackTrace();
         }

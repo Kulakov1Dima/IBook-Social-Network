@@ -90,27 +90,36 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     //ответ от сервера
     @Override
     public void callingBack(String dataResponse) {
-        Config ErrorToastConfiguration = new Config();
-        if (Boolean.parseBoolean(dataResponse)) {
+if(!dataResponse.equals("404")) {
+    Config ErrorToastConfiguration = new Config();
+    if (Boolean.parseBoolean(dataResponse)) {
+        Toast.makeText(getApplicationContext(),
+                ErrorToastConfiguration.authorization,
+                Toast.LENGTH_SHORT).show();
+        startMessenger();
+        startIbookService();
+        finish();
+    } else {
+        if (checkAuthorization()) { //неверный логин или пароль
             Toast.makeText(getApplicationContext(),
-                    ErrorToastConfiguration.authorization,
+                    ErrorToastConfiguration.noAuthorization,
                     Toast.LENGTH_SHORT).show();
-            startMessenger();
-            startIbookService();
-            finish();
-        } else {
-            if (checkAuthorization()) { //неверный логин или пароль
-                Toast.makeText(getApplicationContext(),
-                        ErrorToastConfiguration.noAuthorization,
-                        Toast.LENGTH_SHORT).show();
-            }
-            else{ //checkDataLastAuthorization() получила устаревший логин и пароль
-                Toast.makeText(getApplicationContext(),
-                        ErrorToastConfiguration.oldSession,
-                        Toast.LENGTH_SHORT).show();
-            }
-            mSettings.edit().clear().apply();
+        } else { //checkDataLastAuthorization() получила устаревший логин и пароль
+            Toast.makeText(getApplicationContext(),
+                    ErrorToastConfiguration.oldSession,
+                    Toast.LENGTH_SHORT).show();
         }
+        mSettings.edit().clear().apply();
+    }
+}
+else{
+    Toast.makeText(getApplicationContext(),
+            "Сервер недоступен",
+            Toast.LENGTH_SHORT).show();
+    Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+    startActivity(intent);
+
+}
     }
     /*автоматическая авторизация*/
     void checkDataLastAuthorization() {

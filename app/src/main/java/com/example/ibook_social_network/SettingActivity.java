@@ -1,6 +1,7 @@
 package com.example.ibook_social_network;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -28,5 +29,7 @@ public class SettingActivity extends AppCompatActivity {
         SharedPreferences.Editor editor = mSettings.edit();
         editor.putString(APP_PREFERENCES_URL, address.getText().toString());
         editor.apply();
+        Intent intent = new Intent(SettingActivity.this, MainActivity.class);
+        startActivity(intent);
     }
 }
