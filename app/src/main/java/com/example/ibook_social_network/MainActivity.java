@@ -116,10 +116,13 @@ else{
     Toast.makeText(getApplicationContext(),
             "Сервер недоступен",
             Toast.LENGTH_SHORT).show();
-    Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-    startActivity(intent);
-
+            serverError();
 }
+    }
+
+    public void serverError(){
+        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+        startActivity(intent);
     }
     /*автоматическая авторизация*/
     void checkDataLastAuthorization() {
@@ -143,4 +146,8 @@ else{
         return mSettings.getString(APP_PREFERENCES_URL, "");
     }
 
+    public void serverError(View view) {
+        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
+        startActivity(intent);
+    }
 }
