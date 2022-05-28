@@ -10,7 +10,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String defaultUrl = "http://192.168.43.149:6005/";
+    String defaultUrl = "http://192.168.0.104:6005/";
     String url = MainActivity.get_settings_server();
     String authUrl;
     public String jsonStr;
@@ -28,7 +28,7 @@ class Config {
                 "  },\n" +
                 "  \"version\": \"" + dataToServer[2] + "\"\n" +
                 "}";
-        jsonAuthorization = "\'[\"msgReader\"]\'";
+        jsonAuthorization = "[\"msgReader\",\" msgCreator\", \"msgUpdater\", \"msgDeleter\", \"chatReader\", \"chatCreator\", \"chatUpdater\", \"chatDeleter\", \"userReader\", \"userCreator\", \"userUpdater\", \"userDeleter\", \"postReader\", \"postCreator\", \"postUpdater\", \"postDeleter\"]";
         authUrl = url+"auth/token/data_as_body?username=%2B7"+dataToServer[1]+"&password="+dataToServer[2];
     }
     Config() {
