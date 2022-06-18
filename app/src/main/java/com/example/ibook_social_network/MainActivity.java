@@ -92,7 +92,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     public void callingBack(String dataResponse) {
 if(!dataResponse.equals("404")) {
     Config ErrorToastConfiguration = new Config();
-    if (Boolean.parseBoolean(dataResponse)) {
+    if (dataResponse.equals("{\"accessToken\":true}")) {
         Toast.makeText(getApplicationContext(),
                 ErrorToastConfiguration.authorization,
                 Toast.LENGTH_SHORT).show();

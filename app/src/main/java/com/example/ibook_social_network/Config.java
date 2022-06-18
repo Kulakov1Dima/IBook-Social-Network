@@ -10,7 +10,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String defaultUrl = "http://192.168.0.102:6005/";
+    String defaultUrl = "http://checkers24.ru/ibook/";
     String url = MainActivity.get_settings_server();
     String authUrl;
     public String jsonStr;
@@ -29,7 +29,8 @@ class Config {
                 "  \"version\": \"" + dataToServer[2] + "\"\n" +
                 "}";
         jsonAuthorization = "[\"msgReader\",\" msgCreator\", \"msgUpdater\", \"msgDeleter\", \"chatReader\", \"chatCreator\", \"chatUpdater\", \"chatDeleter\", \"userReader\", \"userCreator\", \"userUpdater\", \"userDeleter\", \"postReader\", \"postCreator\", \"postUpdater\", \"postDeleter\"]";
-        authUrl = url+"auth/token/data_as_body?username=%2B7"+dataToServer[1]+"&password="+dataToServer[2];
+        authUrl =url;
+        //authUrl = url+"auth/token/data_as_body?username=%2B7"+dataToServer[1]+"&password="+dataToServer[2];
     }
     Config() {
     }

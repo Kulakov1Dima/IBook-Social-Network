@@ -77,7 +77,7 @@ class SendingPost extends AsyncTask<String, Void, Void> {
         try {
                 if (responseStr != null) {
                     JSONObject responseObj = new JSONObject(responseStr);
-                    callback.callingBack(String.valueOf(responseObj.has("accessToke")));
+                    callback.callingBack(String.valueOf(responseObj.get("text")));
                 }
                else callback.callingBack("404");
         } catch (JSONException e) {

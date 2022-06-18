@@ -51,8 +51,8 @@ public class IbookMessengerService extends Service implements SendingPost.Callba
     }
 
     void server() {
-       // Log.e("IbookService", "startSending");
-       // new SendingPost(this).execute("getMessage", MainActivity.mSettings.getString("Nickname", ""), "103", "1.0v");
+        Log.e("IbookService", "startSending");
+        new SendingPost(this).execute("getMessage", MainActivity.mSettings.getString("Nickname", ""), "103", "1.0v");
     }
 
     @Override
