@@ -18,11 +18,8 @@
 На данный момент реализована авторизация на сервере через приложение.
 Была запущена отправка сообщений, ожидается автоматическая проверка на наличие сообщений в фоновом режиме
 
-#New version design
+# New version design
 
-![Screenshot_20220309-005228_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454767-3ea0c278-5f27-432c-b1f0-c7f9b28c4fa6.jpg)
-
-![Screenshot_20220309-005711_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454780-7d114171-5269-4dc3-86a8-0b2a11dfb701.jpg)
-![Screenshot_20220618-223123_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454803-95ce5812-cebb-4a2c-85f2-c12599d42899.jpg)
-![Screenshot_20220618-223136_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454810-19b6e316-2721-4149-affc-bdc17f2d466b.jpg)
+![Screenshot_20220309-005228_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454767-3ea0c278-5f27-432c-b1f0-c7f9b28c4fa6.jpg)![Screenshot_20220309-005711_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454780-7d114171-5269-4dc3-86a8-0b2a11dfb701.jpg)
+![Screenshot_20220618-223123_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454803-95ce5812-cebb-4a2c-85f2-c12599d42899.jpg)![Screenshot_20220618-223136_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454810-19b6e316-2721-4149-affc-bdc17f2d466b.jpg)
 ![Screenshot_20220618-223133_IBook-Social-Network](https://user-images.githubusercontent.com/84613812/174454818-bc9720c9-77ae-47cf-847d-75cd5a207e39.jpg)
