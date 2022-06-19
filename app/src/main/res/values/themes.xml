@@ -12,5 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="auth_color">#CCC8C8</item>
+        <item name="auth_color1">#D7D9E0</item>
+        <item name="auth_color2">#8F9199</item>
     </style>
 </resources>

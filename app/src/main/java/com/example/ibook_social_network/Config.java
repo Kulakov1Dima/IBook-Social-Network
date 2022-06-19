@@ -10,8 +10,7 @@ class Config {
     String errorPhone = "Неверный телефон";
     String errorPassword = "Миннимальная длина пароля " + lengthPassword + " символов";
     String waitMessage = "Подождите...";
-    String defaultUrl = "http://checkers24.ru/ibook/";
-    String url = MainActivity.get_settings_server();
+    String url = "http://checkers24.ru/ibook/";
     String authUrl;
     public String jsonStr;
     public String jsonAuthorization;

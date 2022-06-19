@@ -24,7 +24,6 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     public static final String APP_PREFERENCES = "accountSettings";
     public static final String ACCOUNT_PREFERENCES_NAME = "Nickname";
     public static final String ACCOUNT_PREFERENCES_PASSWORD = "password";
-    public static final String APP_PREFERENCES_URL = "server_settings";
 
     public static SharedPreferences mSettings;
 
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             SharedPreferences.Editor editor = mSettings.edit();        //запись логина и пароля для автоматической авторизации (checkDataLastAuthorization())
             editor.putString(ACCOUNT_PREFERENCES_NAME, getPhone());
             editor.putString(ACCOUNT_PREFERENCES_PASSWORD, getPassword());
-            editor.putString(APP_PREFERENCES_URL, ErrorToastConfiguration.defaultUrl);
             editor.apply();
             new SendingPost(this).execute("authorization", getPhone(), getPassword(), "1.0v");
         }
@@ -116,13 +114,7 @@ else{
     Toast.makeText(getApplicationContext(),
             "Сервер недоступен",
             Toast.LENGTH_SHORT).show();
-            serverError();
 }
-    }
-
-    public void serverError(){
-        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-        startActivity(intent);
     }
     /*автоматическая авторизация*/
     void checkDataLastAuthorization() {
@@ -140,14 +132,5 @@ else{
     void startIbookService(){
         stopService(new Intent(this, IbookMessengerService.class));   //остановка фоновой службы опроса сервера (на случай если она уже была запущена)
         startService(new Intent(this, IbookMessengerService.class));  //запуск
-    }
-
-    public static String get_settings_server(){
-        return mSettings.getString(APP_PREFERENCES_URL, "");
-    }
-
-    public void serverError(View view) {
-        Intent intent = new Intent(MainActivity.this, SettingActivity.class);
-        startActivity(intent);
     }
 }

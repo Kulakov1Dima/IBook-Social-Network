@@ -23,9 +23,6 @@
         <activity
             android:name=".MyMessage"
             android:exported="false" />
-        <activity
-            android:name=".SettingActivity"
-            android:exported="false" />
 
         <service
             android:name=".IbookMessengerService"

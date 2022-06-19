@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" android:padding="10dp">
+    <gradient
+        android:angle = "315"
+        android:startColor = "?attr/auth_color"
+        android:centerColor = "?attr/auth_color1"
+        android:endColor = "?attr/auth_color2"
+        android:type = "linear" />
+    <corners
+        android:bottomRightRadius="50dp"
+        android:bottomLeftRadius="50dp"
+        android:topLeftRadius="50dp"
+        android:topRightRadius="50dp"/>
+</shape>

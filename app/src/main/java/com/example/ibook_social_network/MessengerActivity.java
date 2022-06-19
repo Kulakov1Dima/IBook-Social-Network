@@ -116,9 +116,5 @@ public class MessengerActivity extends AppCompatActivity implements SendingPost.
         startActivity(intent);
         viewMessages();
     }
-    public void onSettingsAction(View view) {
-        Intent intent = new Intent(MessengerActivity.this, SettingActivity.class);
-        startActivity(intent);
-    }
 
 }
