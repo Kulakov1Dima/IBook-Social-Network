@@ -1,7 +1,5 @@
 <resources>
-    <string name="app_name">IBook-Social-Network</string>
+    <string name="app_name">IBook</string>
+    <string name="editPasswordMain">Парроль</string>
     <string name="editPhoneMain">Телефон</string>
-    <string name="editPasswordMain">Пароль</string>
-    <string name="ibookmainimage">IbookMainImage</string>
-    <string name="_7">+7</string>
 </resources>

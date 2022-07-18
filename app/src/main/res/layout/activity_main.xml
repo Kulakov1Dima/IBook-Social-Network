@@ -6,111 +6,68 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="-60dp"
-        android:layout_marginEnd="30dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextPhone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextPhone"
-        app:srcCompat="@drawable/auth" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="30dp"
-        android:layout_marginEnd="-50dp"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/editTextTextPassword"
-        app:layout_constraintTop_toTopOf="@+id/editTextTextPassword"
-        app:srcCompat="@drawable/auth" />
-
-    <EditText
-        android:id="@+id/editTextPhone"
-        android:layout_width="match_parent"
-        android:layout_height="62dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="10dp"
-        android:autoSizeTextType="uniform"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="@font/kurale"
-        android:hint="@string/editPhoneMain"
-        android:inputType="phone"
-        android:textColorHint="?attr/colorAccent"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextTextPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
-
-    <EditText
-        android:id="@+id/editTextTextPassword"
-        android:layout_width="match_parent"
-        android:layout_height="61dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="7dp"
-        android:layout_marginBottom="20dp"
-        android:autoSizeTextType="uniform"
-        android:autofillHints=""
-        android:ems="10"
-        android:fontFamily="@font/kurale"
-        android:hint="@string/editPasswordMain"
-        android:inputType="textPassword"
-        android:textColorHint="?attr/colorAccent"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.946"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
-
     <TextView
         android:id="@+id/textView"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="70dp"
         android:autoSizeTextType="uniform"
-        android:fontFamily="@font/kurale"
+        android:fontFamily="sans-serif"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textSize="25sp"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.412"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView1"
-        android:layout_width="320dp"
-        android:layout_height="287dp"
-        android:layout_marginTop="-10dp"
-        android:contentDescription="@string/ibookmainimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:srcCompat="@drawable/mainibook" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/screensaver" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/button"
-        android:layout_width="90dp"
-        android:layout_height="90dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/oval_buttons"
-        android:foreground="@drawable/ic_arrow_back_black_24dp"
-        android:onClick="authorization"
+    <ImageButton
+        android:id="@+id/sign_in_button"
+        style="@style/Widget.AppCompat.ImageButton"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="#00FFFFFF"
+        android:onClick="signIn"
+        android:scaleType="centerCrop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="OnClick,SpeakableTextPresentCheck" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView1"
+        app:srcCompat="@drawable/googleg_standard_color_18"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="35dp"
+        app:layout_constraintStart_toEndOf="@+id/textView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_launcher" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="235dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="-10dp"
+        android:layout_marginBottom="50dp"
+        android:text="Авторизация"
+        android:textAlignment="center"
+        app:autoSizeTextType="uniform"
+        app:layout_constraintBottom_toTopOf="@+id/sign_in_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
