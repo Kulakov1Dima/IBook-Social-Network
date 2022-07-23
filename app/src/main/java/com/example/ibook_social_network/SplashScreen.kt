@@ -8,13 +8,13 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 /**
  * Ibook - приложение соцсети.
  * 21.10.2021  01:09 Кулаков Дмитрий
- * 0.1 (201)
+ * 0.1 (205)
  */
 
 class SplashScreen : AppCompatActivity() {
@@ -25,9 +25,20 @@ class SplashScreen : AppCompatActivity() {
         setContentView(R.layout.activity_splash_screen)
         Handler(Looper.getMainLooper()).postDelayed({
             if (!checkForInternet(this)) {
-                Toast.makeText(this, "Disconnected", Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, NotConnectedToTheInternet::class.java)
+                startActivity(intent)
             } else {
-                val intent = Intent(this, MainActivity::class.java)
+                val account = GoogleSignIn.getLastSignedInAccount(this)
+                if (account != null){
+                    MainActivity.email = account.email
+                    intent = Intent(this, Messenger::class.java)
+                    intent.putExtra("nickname", account.givenName)
+                    intent.putExtra("token", MainActivity.email)
+                    intent.putExtra("profile_picture", account.photoUrl)
+                }
+                else {
+                    intent = Intent(this, MainActivity::class.java)
+                }
                 startActivity(intent)
                 finish()
             }
