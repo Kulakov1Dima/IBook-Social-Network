@@ -1,12 +1,12 @@
 package com.example.ibook_social_network
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkCapabilities
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -17,25 +17,21 @@ import androidx.appcompat.app.AppCompatActivity
  * 0.1 (201)
  */
 
-@SuppressLint("CustomSplashScreen")
-@Suppress("DEPRECATION")
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //starting the screen
         awp()
         setContentView(R.layout.activity_splash_screen)
-
-        Handler().postDelayed({
+        Handler(Looper.getMainLooper()).postDelayed({
             if (!checkForInternet(this)) {
                 Toast.makeText(this, "Disconnected", Toast.LENGTH_SHORT).show()
-            }
-            else {
+            } else {
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
-             }, 1000) // 1000 is the delayed time in milliseconds.
+        }, 1000) // 1000 is the delayed time in milliseconds.
     }
 
     //applying window parameters
@@ -47,8 +43,10 @@ class SplashScreen : AppCompatActivity() {
         )
     }
 
+    //checking the availability of the Internet
     private fun checkForInternet(context: Context): Boolean {
-        val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val connectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val network = connectivityManager.activeNetwork ?: return false
         val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
         return when {
