@@ -7,9 +7,9 @@ import android.os.HandlerThread;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
+import android.os.Process;
 import android.util.Log;
 import android.widget.Toast;
-import android.os.Process;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
@@ -58,10 +58,10 @@ public class MessageService extends Service {
         serviceHandler = new ServiceHandler(serviceLooper);
     }
 
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        AddNotification.sendNotification("Ibook Service", "получение сообщений: включено", this, "Ibook Service", 655);
+        ServiceNotification.sendNotification("Фоновая работа приложения", "Получение уведомлений: включено", this);
+        MessageNotification.createNotificationChannel(this);
         Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
         Message msg = serviceHandler.obtainMessage();
         msg.arg1 = startId;
@@ -76,9 +76,7 @@ public class MessageService extends Service {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(this, "service done", Toast.LENGTH_SHORT).show();
-        AddNotification.notificationManager.cancel(655);
-        //Disabling service
+        ServiceNotification.notificationManager.cancel(2768);
         stopSelf();
         super.onDestroy();
     }
