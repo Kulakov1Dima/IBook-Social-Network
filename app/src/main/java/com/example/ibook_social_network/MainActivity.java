@@ -1,11 +1,13 @@
 package com.example.ibook_social_network;
 
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -18,7 +20,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
 
     public static String email;
-    int RC_SIGN_IN = 1345;
     Intent intent;
 
     //starting the screen
@@ -27,20 +28,18 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
         super.onCreate(savedInstanceState);
         Configuration.awp(getWindow(), Objects.requireNonNull(getSupportActionBar()));
         setContentView(R.layout.activity_main);
+        findViewById(R.id.sign_in_button)
+                .setOnClickListener(v -> someActivityResultLauncher.launch((Configuration.GoogleIntent(this))));
     }
 
-    public void signIn(View view) {
-        startActivityForResult(Configuration.GoogleIntent(this), RC_SIGN_IN);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == RC_SIGN_IN) {
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            handleSignInResult(task);
-        }
-    }
+    ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK) {
+                    Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(result.getData());
+                    handleSignInResult(task);
+                }
+            });
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
