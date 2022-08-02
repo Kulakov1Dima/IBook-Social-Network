@@ -1,5 +1,3 @@
 <resources>
     <string name="app_name">IBook</string>
-    <string name="editPasswordMain">Парроль</string>
-    <string name="editPhoneMain">Телефон</string>
 </resources>

@@ -41,11 +41,11 @@ public class MessageService extends Service {
                 e.printStackTrace();
                 try {
                     Thread.sleep(10000);
-                    handleMessage(msg);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
             }
+            handleMessage(msg);
         }
     }
 
@@ -66,7 +66,7 @@ public class MessageService extends Service {
         Message msg = serviceHandler.obtainMessage();
         msg.arg1 = startId;
         serviceHandler.sendMessage(msg);
-        return Service.START_STICKY;
+        return Service.START_REDELIVER_INTENT;
     }
 
     @Override
