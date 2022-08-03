@@ -29,11 +29,11 @@ public class MessageService extends Service {
         @Override
         public void handleMessage(Message msg) {
             try {
-                URL url = new URL("http://checkers24.ru/ibook/"+MainActivity.email);
+                URL url = new URL("http://checkers24.ru/ibook/"+Configuration.email);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 Log.d("SSE", "http response: " + urlConnection.getResponseCode());
                 InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
-                SSE.setInputStream(inputStream, MainActivity.email, MessageService.this);
+                SSE.setInputStream(inputStream, Configuration.email, MessageService.this);
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {

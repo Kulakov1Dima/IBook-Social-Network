@@ -1,13 +1,11 @@
 package com.example.ibook_social_network
 
 
-import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.View
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,11 +18,36 @@ import java.util.*
 
 class Messenger : AppCompatActivity(), SendingPost.Callback {
 
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Configuration.awp(window, Objects.requireNonNull(supportActionBar))
+        setContentView(R.layout.activity_messenger)
+        Configuration.checkService(this, MessageService::class.java)
+
+
+        val textView = findViewById<TextView>(R.id.Welcome)
+        textView.text = formatGreeting(
+            Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
+        ) + intent.extras?.get("nickname").toString()
+        photo = intent.extras?.get("profile_picture").toString()
+        token = intent.extras?.get("token").toString()
+        val url: String = photo
+        if (url != "null") {
+            Glide.with(this)
+                .load(url)
+                .into(findViewById<View>(R.id.image_profile) as CircleImageView)
+        }
+        listOfLetters(token)
+        mHandler.removeCallbacks(badTimeUpdater)
+        mHandler.postDelayed(badTimeUpdater, 1000)
+    }
+
+
     private val mHandler = Handler()
 
     private val badTimeUpdater: Runnable = object : Runnable {
         override fun run() {
-            // Log.e ("up", String.valueOf(update));
             if (update) {
                 listOfLetters(token)
                 update = false
@@ -51,29 +74,6 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
     private lateinit var recyclerView: RecyclerView
 
 
-    @SuppressLint("SimpleDateFormat", "SetTextI18n")
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        awp()
-        setContentView(R.layout.activity_messenger)
-        startService(Intent(this, MessageService::class.java))
-        val textView = findViewById<TextView>(R.id.Welcome)
-        textView.text = formatGreeting(
-            Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
-        ) + intent.extras?.get("nickname").toString()
-        photo = intent.extras?.get("profile_picture").toString()
-        token = intent.extras?.get("token").toString()
-        val url: String = photo
-        if (url != "null") {
-            Glide.with(this)
-                .load(url)
-                .into(findViewById<View>(R.id.image_profile) as CircleImageView)
-        }
-        listOfLetters(token)
-        mHandler.removeCallbacks(badTimeUpdater)
-        mHandler.postDelayed(badTimeUpdater, 1000)
-        }
-
     private fun listOfLetters(email: String) {
         SendingPost(this).execute(
             "http://ibook.agency/message%20storage.php",
@@ -81,15 +81,6 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
                 email, null,
                 photo, null
             )
-        )
-    }
-
-    //applying window parameters
-    private fun awp() {
-        supportActionBar?.hide()
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
         )
     }
 

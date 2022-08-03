@@ -19,8 +19,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
 
-    public static String email;
-    Intent intent;
+    GoogleSignInAccount account;
 
     //starting the screen
     @Override
@@ -43,22 +42,19 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
 
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
-            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
-            email = account.getEmail();
-            new SendingPost(this).execute("http://checkers24.ru/ibook/auth.php", email);
-            intent = new Intent(MainActivity.this, Messenger.class);
-            intent.putExtra("nickname", account.getGivenName());
-            intent.putExtra("token", email);
-            intent.putExtra("profile_picture", account.getPhotoUrl());
+            account = completedTask.getResult(ApiException.class);
+            Configuration.auth(this, account.getEmail());
         } catch (ApiException e) {
             Log.w("Google Account", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
+    //sign in app
     @Override
     public void callingBack(String s) {
-        if (s.equals(email)) {
-            startActivity(intent);
+        if (s.equals(account.getEmail())) {
+            startActivity(Configuration.getParameters(new Intent(MainActivity.this, Messenger.class), account));
+            startService(new Intent(this, MessageService.class));
             finish();
         }
     }

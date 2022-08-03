@@ -48,7 +48,7 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
             getSupportActionBar().hide();
         }
         setContentView(R.layout.activity_dialogue);
-        getListMessengers(MainActivity.email + "/" + toolBarNumber());
+        getListMessengers(Configuration.email + "/" + toolBarNumber());
         mHandler.removeCallbacks(badTimeUpdater);
         mHandler.postDelayed(badTimeUpdater, 1000);
     }
@@ -109,7 +109,7 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
     }
 
     void sendMyMessage(String myMessage) {
-        new SendingPost(this).execute("http://checkers24.ru/ibook/", CreateJSON.JSON(MainActivity.email, toSendNumber, null, myMessage));
+        new SendingPost(this).execute("http://checkers24.ru/ibook/", CreateJSON.JSON(Configuration.email, toSendNumber, null, myMessage));
     }
 
 
