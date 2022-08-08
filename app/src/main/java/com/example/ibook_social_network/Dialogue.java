@@ -1,6 +1,10 @@
 package com.example.ibook_social_network;
 
 import android.annotation.SuppressLint;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -8,6 +12,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,28 +23,33 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
 
     public static RecyclerMessageAdapter recyclerMessageAdapter;
     private static RecyclerView messengerList;
-    private final Handler mHandler = new Handler();
     private String toSendNumber;
-    public static Boolean update = false;
-    public static String endDelete = "";
 
 
-    private final Runnable badTimeUpdater = new Runnable() {
+    @Override
+    protected void onPause() {
+        LocalBroadcastManager.getInstance(this).unregisterReceiver(mMessageReceiver);
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                mMessageReceiver, new IntentFilter("custom-event-name"));
+        super.onResume();
+    }
+
+    private final BroadcastReceiver mMessageReceiver = new BroadcastReceiver() {
         @Override
-        public void run() {
-           // Log.e ("up", String.valueOf(update));
-            if(update){
-                Dialogue.recyclerMessageAdapter.refreshData(endDelete);
-                messengerList.smoothScrollToPosition(recyclerMessageAdapter.getItemCount());
-                recyclerMessageAdapter.notifyDataSetChanged();
-                update = false;
-            }
-
-            mHandler.postDelayed(this, 2000);
+        public void onReceive(Context context, Intent intent) {
+            // TODO Auto-generated method stub
+            // Get extra data included in the Intent
+            String message = intent.getStringExtra("message");
+            Dialogue.recyclerMessageAdapter.refreshData(message);
+            messengerList.smoothScrollToPosition(recyclerMessageAdapter.getItemCount());
+            recyclerMessageAdapter.notifyDataSetChanged();
         }
     };
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +59,6 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
         }
         setContentView(R.layout.activity_dialogue);
         getListMessengers(Configuration.email + "/" + toolBarNumber());
-        mHandler.removeCallbacks(badTimeUpdater);
-        mHandler.postDelayed(badTimeUpdater, 1000);
     }
 
     public String toolBarNumber() {

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             account = completedTask.getResult(ApiException.class);
-            Configuration.auth(this, account.getEmail());
+            Configuration.auth(this, account.getEmail(), account.getDisplayName(), account.getPhotoUrl());
         } catch (ApiException e) {
             Log.w("Google Account", "signInResult:failed code=" + e.getStatusCode());
         }
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     //sign in app
     @Override
     public void callingBack(String s) {
+        System.out.println(s);
         if (s.equals(account.getEmail())) {
             startActivity(Configuration.getParameters(new Intent(MainActivity.this, Messenger.class), account));
             startService(new Intent(this, MessageService.class));

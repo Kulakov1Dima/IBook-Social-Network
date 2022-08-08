@@ -23,7 +23,7 @@ class CustomRecyclerAdapter(private val names: List<String>, private val messeng
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.largeTextView.text = names[position].split("/")[1].substring(0, names[position].split("/")[1].length-4)
         holder.largeTextView.setOnClickListener {
-            Messenger.nextActivity(messenger, names[position].split("/")[1].substring(0, names[position].split("/")[1].length-4))
+            Messenger.nextActivity(messenger.intent, messenger, names[position].split("/")[1].substring(0, names[position].split("/")[1].length-4))
         }
     }
 

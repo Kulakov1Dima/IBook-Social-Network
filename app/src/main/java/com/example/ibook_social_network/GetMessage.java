@@ -2,6 +2,9 @@ package com.example.ibook_social_network;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.util.Log;
+
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import java.io.IOException;
 
@@ -23,12 +26,17 @@ public class GetMessage {
             endDelete = AddPost.post("http://checkers24.ru/ibook/index.php", CreateJSON.JSON(email, "del", null, message));
             System.out.println(endDelete);
             if(!messageM.equals("")){
-               Messenger.update = true;
-                Dialogue.endDelete = "@"+messageM;
-                Dialogue.update = true;
+                sendMessage(messageService,"@"+messageM);
             }
 
         }
         return endDelete.equals("no file");
+    }
+    private static void sendMessage(MessageService messageService, String s) {
+        Log.d("sender", "Broadcasting message");
+        Intent intent = new Intent("custom-event-name");
+        // You can also include some extra data.
+        intent.putExtra("message", s);
+        LocalBroadcastManager.getInstance(messageService).sendBroadcast(intent);
     }
 }

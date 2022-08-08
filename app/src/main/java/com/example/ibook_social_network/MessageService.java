@@ -21,6 +21,7 @@ import java.net.URL;
 public class MessageService extends Service {
 
     private MessageService.ServiceHandler serviceHandler;
+    int countError = 0;
     class ServiceHandler extends Handler {
         public ServiceHandler(Looper looper) {
             super(looper);
@@ -37,21 +38,21 @@ public class MessageService extends Service {
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
-                Log.e("SSE activity", "Error on url openConnection: " + e.getMessage());
-                e.printStackTrace();
+                //Log.e("SSE activity", "Error on url openConnection: " + e.getMessage());
+                countError++;
                 try {
                     Thread.sleep(10000);
                 } catch (InterruptedException ex) {
                     ex.printStackTrace();
                 }
             }
-            handleMessage(msg);
+            if(countError>3)onDestroy();
+            else handleMessage(msg);
         }
     }
 
     @Override
     public void onCreate() {
-
         HandlerThread thread = new HandlerThread("IbookService",Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
         Looper serviceLooper = thread.getLooper();

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -25,6 +26,15 @@ public class Configuration {
         window.setFlags(
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
                 WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);  //display without borders
+    }
+
+    //greetings for messenger activity
+    public static String formatGreeting(int time, String nickname) {
+        if (time > 21) return "Доброй ночи, " + nickname;
+        if (time > 16) return "Добрый вечер, " + nickname;
+        if (time >= 11) return "Добрый день, " + nickname;
+        if (time >= 4) return "Доброе утро, " + nickname;
+        return "Доброй ночи, " + nickname;
     }
 
     //checking the availability of the Internet
@@ -67,8 +77,25 @@ public class Configuration {
         context.startService(new Intent(context, MessageService.class));
     }
 
+    public static Intent nextActivity(Intent oldIntent, String name, Intent intent) {
+        intent.putExtra("email", oldIntent.getStringExtra("token"));
+        intent.putExtra("recipient", name);
+        return intent;
+    }
+
     //authorization on ibook server
-    public static void auth(Context activity, String email) {
-        new SendingPost((SendingPost.Callback) activity).execute("http://checkers24.ru/ibook/auth.php", email);
+    public static void auth(Context activity, String email, String name, Uri photo) {
+        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/auth.php",  CreateJSON.JSON(email, name, String.valueOf(photo), null));
+    }
+
+    //get list of letters
+    public static void listOfLetters(Context activity, Intent intent) {
+        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/message%20storage.php",
+                CreateJSON.JSON(intent.getStringExtra("token"), null, intent.getStringExtra("profile_picture"), null));
+    }
+    //sending message
+    public static void sendMessage(Context activity, String token, String recipient, String photo, String message) {
+        new SendingPost((SendingPost.Callback) activity).execute("http://checkers24.ru/ibook/",
+                CreateJSON.JSON(token, recipient, photo, message));
     }
 }
