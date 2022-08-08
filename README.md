@@ -24,5 +24,5 @@
 - Приходят уведомления, когда находишься в чате.
 - Приходящие новые сообщения отображаются во всех чатах.
 
-#Скачать версию 2.5.1(update to optimize phone battery consumption):
+# Скачать версию 2.5.1(update to optimize phone battery consumption):
 https://drive.google.com/drive/folders/1bpka4aQ-VYA0u6BjWbHk3QMvAlDVkf3a?usp=sharing
