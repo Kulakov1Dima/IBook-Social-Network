@@ -30,7 +30,7 @@ public class MessageService extends Service {
         @Override
         public void handleMessage(Message msg) {
             try {
-                URL url = new URL("http://checkers24.ru/ibook/"+Configuration.email);
+                URL url = new URL("http://ibook.agency/ibook/"+Configuration.email);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
                 Log.d("SSE", "http response: " + urlConnection.getResponseCode());
                 InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
@@ -63,7 +63,6 @@ public class MessageService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         ServiceNotification.sendNotification("Фоновая работа приложения", "Получение уведомлений: включено", this);
         MessageNotification.createNotificationChannel(this);
-        Toast.makeText(this, "service starting", Toast.LENGTH_SHORT).show();
         Message msg = serviceHandler.obtainMessage();
         msg.arg1 = startId;
         serviceHandler.sendMessage(msg);

@@ -6,32 +6,28 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 public class GetMessage {
 
     @SuppressLint("NotifyDataSetChanged")
-    public static boolean getCommand(String line, String email, MessageService messageService) throws IOException {
+    public static boolean getCommand(String line, String email, MessageService messageService) throws IOException, JSONException {
         System.out.println(line);
-        String endDelete = "";
-        if (line.contains("new message")) {
-            String message = line.substring(12);
-            endDelete = AddPost.post("http://checkers24.ru/ibook/" + email + "/read.php", CreateJSON.JSON(email, null, null, message));
-            System.out.println(endDelete);
-            String messageM = "";
-            if (!endDelete.equals("no file")) {
-                MessageNotification.send_notification(messageService, message.split(" ")[0], endDelete);
-                messageM = endDelete;
+        if(!line.equals("")) {
+            JSONObject userJson = new JSONObject(line);
+            if(!userJson.isNull("message")){
+                AddPost.post("http://ibook.agency/ibook/" + email + "/del.php", line);
+                JSONObject messageInfo = new JSONObject(userJson.getString("message"));
+                MessageNotification.send_notification(messageService, messageInfo.getString("token"), messageInfo.getString("message"));
+                sendMessage(messageService,"@"+messageInfo.getString("message"));
             }
-            endDelete = AddPost.post("http://checkers24.ru/ibook/index.php", CreateJSON.JSON(email, "del", null, message));
-            System.out.println(endDelete);
-            if(!messageM.equals("")){
-                sendMessage(messageService,"@"+messageM);
-            }
-
         }
-        return endDelete.equals("no file");
+        return line.equals("");
     }
+
     private static void sendMessage(MessageService messageService, String s) {
         Log.d("sender", "Broadcasting message");
         Intent intent = new Intent("custom-event-name");

@@ -4,6 +4,7 @@ package com.example.ibook_social_network;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
@@ -15,6 +16,8 @@ import androidx.appcompat.app.ActionBar;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+
+import java.io.IOException;
 
 public class Configuration {
 
@@ -46,9 +49,12 @@ public class Configuration {
     }
 
     //add google client
-    public static Intent checkGoogle(Intent intent, Context activity) {
+    public static Intent checkGoogle(Intent intent, Context activity, SharedPreferences settings) {
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(activity);
-        if (account != null) return getParameters(intent, account);
+        if (account != null){
+            if(settings.contains("auth"))return getParameters(intent, account);
+            else return null;
+        }
         else return null;
     }
 
@@ -85,17 +91,24 @@ public class Configuration {
 
     //authorization on ibook server
     public static void auth(Context activity, String email, String name, Uri photo) {
-        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/auth.php",  CreateJSON.JSON(email, name, String.valueOf(photo), null));
+        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/auth.php", CreateJSON.JSON(email, name, String.valueOf(photo), null));
     }
-
+    /*
     //get list of letters
     public static void listOfLetters(Context activity, Intent intent) {
         new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/message%20storage.php",
                 CreateJSON.JSON(intent.getStringExtra("token"), null, intent.getStringExtra("profile_picture"), null));
     }
+     */
+
+    //get list of letters
+    public static void listOfLettersForSSE(Intent intent) throws IOException {
+       // AddPost.post("http://ibook.agency/ibook/" + intent.getStringExtra("token") + "/del.php","hello");
+                //CreateJSON.JSON(intent.getStringExtra("token"), "", intent.getStringExtra("profile_picture"), ""));
+    }
     //sending message
     public static void sendMessage(Context activity, String token, String recipient, String photo, String message) {
-        new SendingPost((SendingPost.Callback) activity).execute("http://checkers24.ru/ibook/",
+        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/send.php",
                 CreateJSON.JSON(token, recipient, photo, message));
     }
 }

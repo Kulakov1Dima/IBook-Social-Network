@@ -1,5 +1,7 @@
 package com.example.ibook_social_network;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,7 +24,7 @@ public class SSE {
                     checkLine = line;
                 }
             }
-            catch (NullPointerException e){
+            catch (NullPointerException | JSONException e){
                 reader.close();
             }
         }

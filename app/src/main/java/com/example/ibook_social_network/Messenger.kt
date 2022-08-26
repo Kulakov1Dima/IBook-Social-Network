@@ -34,7 +34,7 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
     private val mMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent) {
             Log.d("receiver", "Got message:" + intent.getStringExtra("message"))
-            Configuration.listOfLetters(this@Messenger, intent)
+            Configuration.listOfLettersForSSE(intent)
         }
     }
 
@@ -49,7 +49,7 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
                 .load(url_photo)
                 .into(findViewById<View>(R.id.image_profile) as CircleImageView)
         }
-        Configuration.listOfLetters(this@Messenger, intent)
+        Configuration.listOfLettersForSSE(intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,7 +76,7 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
                     bottomSheetDialog.findViewById<TextView>(R.id.message)!!.text.toString()
                 )
                 bottomSheetDialog.cancel()
-                Configuration.listOfLetters(this@Messenger, intent)
+                Configuration.listOfLettersForSSE(intent)
             }
         }
     }

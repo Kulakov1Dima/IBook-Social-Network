@@ -117,7 +117,7 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
     }
 
     void sendMyMessage(String myMessage) {
-        new SendingPost(this).execute("http://checkers24.ru/ibook/", CreateJSON.JSON(Configuration.email, toSendNumber, null, myMessage));
+        new SendingPost(this).execute("http://ibook.agency/ibook/send.php", CreateJSON.JSON(Configuration.email, toSendNumber, null, myMessage));
     }
 
 
