@@ -10,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 /**
  * Ibook - приложение соцсети.
  * 21.10.2021  01:09 Кулаков Дмитрий
- * 0.1 (205)
+ * 2.5.1.1 (205)
  */
 
 @SuppressLint("CustomSplashScreen")

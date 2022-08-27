@@ -102,7 +102,7 @@ public class Dialogue extends AppCompatActivity implements SendingPost.Callback 
         Button button = findViewById(R.id.sendButton);
         button.setOnClickListener(v -> {
             String textM = getMyText();
-            if (textM.length() != 0) {
+            if (textM.replace(" ", "").length() > 0) {
                 saveMessage(textM);
                 sendMyMessage(textM);
             }

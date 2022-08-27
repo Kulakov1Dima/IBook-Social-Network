@@ -11,6 +11,8 @@
         android:layout_gravity="center_vertical|end"
         android:background="@drawable/message_background"
         android:fontFamily="monospace"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:padding="10dp" />
 
     <TextView
@@ -20,5 +22,7 @@
         android:layout_gravity="center_vertical|start"
         android:background="@drawable/my_message_background"
         android:fontFamily="monospace"
+        android:autoLink="web"
+        android:linksClickable="true"
         android:padding="10dp" />
 </FrameLayout>

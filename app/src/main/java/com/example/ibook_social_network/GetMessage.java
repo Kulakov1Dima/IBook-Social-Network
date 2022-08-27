@@ -12,7 +12,7 @@ public class GetMessage {
 
     @SuppressLint("NotifyDataSetChanged")
     public static boolean getCommand(String line, String email, MessageService messageService) throws IOException {
-        System.out.println(line);
+        //System.out.println(line);
         String endDelete = "";
         if (line.contains("new message")) {
             String message = line.substring(12);
