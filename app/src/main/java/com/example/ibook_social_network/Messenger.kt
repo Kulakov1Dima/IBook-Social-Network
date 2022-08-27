@@ -49,7 +49,7 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
                 .load(url_photo)
                 .into(findViewById<View>(R.id.image_profile) as CircleImageView)
         }
-        Configuration.listOfLetters(this, intent)
+        Configuration.listOfLetters(this@Messenger, intent)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -76,18 +76,18 @@ class Messenger : AppCompatActivity(), SendingPost.Callback {
                     bottomSheetDialog.findViewById<TextView>(R.id.message)!!.text.toString()
                 )
                 bottomSheetDialog.cancel()
-                Configuration.listOfLetters(this, intent)
+                Configuration.listOfLetters(this@Messenger, intent)
             }
         }
     }
 
     override fun callingBack(s: String?) {
         if (s != null) {
-        //    if (s.split(" ")[0] == "get_list:") {
-        //        if (s.length != 10) takeList(s.substring(10))
-        //    } else {
+            if (s.split(" ")[0] == "get_list:") {
+                if (s.length != 10) takeList(s.substring(10))
+            } else {
                 Log.e("server", s)
-        //}
+            }
         }
     }
 

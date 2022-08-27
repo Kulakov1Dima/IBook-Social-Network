@@ -1,11 +1,10 @@
 package com.example.ibook_social_network;
 
+
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.Toast;
+import android.util.Log;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -20,8 +19,6 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity implements SendingPost.Callback {
 
-    public static final String APP_PREFERENCES = "settings";
-    SharedPreferences settings;
     GoogleSignInAccount account;
 
     //starting the screen
@@ -30,7 +27,6 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
         super.onCreate(savedInstanceState);
         Configuration.awp(getWindow(), Objects.requireNonNull(getSupportActionBar()));
         setContentView(R.layout.activity_main);
-        settings = getSharedPreferences(APP_PREFERENCES, Context.MODE_PRIVATE);
         findViewById(R.id.sign_in_button)
                 .setOnClickListener(v -> someActivityResultLauncher.launch((Configuration.GoogleIntent(this))));
     }
@@ -49,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
             account = completedTask.getResult(ApiException.class);
             Configuration.auth(this, account.getEmail(), account.getDisplayName(), account.getPhotoUrl());
         } catch (ApiException e) {
-            Toast.makeText(this, "Не удалось войти в аккаунт Google", Toast.LENGTH_SHORT).show();
+            Log.w("Google Account", "signInResult:failed code=" + e.getStatusCode());
         }
     }
 
@@ -57,19 +53,10 @@ public class MainActivity extends AppCompatActivity implements SendingPost.Callb
     @Override
     public void callingBack(String s) {
         System.out.println(s);
-        if (s.equals("error json")) Toast.makeText(this, "Повторите позже", Toast.LENGTH_SHORT).show();
         if (s.equals(account.getEmail())) {
-            saveAuth();
             startActivity(Configuration.getParameters(new Intent(MainActivity.this, Messenger.class), account));
             startService(new Intent(this, MessageService.class));
             finish();
-            Toast.makeText(this, "Добро пожаловать!", Toast.LENGTH_SHORT).show();
         }
-    }
-
-    private void saveAuth(){
-        SharedPreferences.Editor editor = settings.edit();
-        editor.putString("auth", "true");
-        editor.apply();
     }
 }

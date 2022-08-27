@@ -6,41 +6,32 @@ import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
 import java.io.IOException;
 
 public class GetMessage {
 
     @SuppressLint("NotifyDataSetChanged")
-    public static void getCommand(String line, String email, MessageService messageService, BufferedReader reader) throws IOException, JSONException {
-        try {
-            //System.out.println(line);
-            if(line.equals("null")){
-                reader.close();
-                return;
+    public static boolean getCommand(String line, String email, MessageService messageService) throws IOException {
+        System.out.println(line);
+        String endDelete = "";
+        if (line.contains("new message")) {
+            String message = line.substring(12);
+            endDelete = AddPost.post("http://checkers24.ru/ibook/" + email + "/read.php", CreateJSON.JSON(email, null, null, message));
+            System.out.println(endDelete);
+            String messageM = "";
+            if (!endDelete.equals("no file")) {
+                MessageNotification.send_notification(messageService, message.split(" ")[0], endDelete);
+                messageM = endDelete;
             }
-            if(line.charAt(0)=='<'){
-                reader.close();
-                return;
+            endDelete = AddPost.post("http://checkers24.ru/ibook/index.php", CreateJSON.JSON(email, "del", null, message));
+            System.out.println(endDelete);
+            if(!messageM.equals("")){
+                sendMessage(messageService,"@"+messageM);
             }
-            JSONObject userJson = new JSONObject(line);
-            if(!userJson.isNull("message")){
-                MessageService.countConnect = 0;
-                AddPost.post("http://ibook.agency/ibook/" + email + "/del.php", line);
-                reader.close();
-                JSONObject messageInfo = new JSONObject(userJson.getString("message"));
-                MessageNotification.send_notification(messageService, messageInfo.getString("token"), messageInfo.getString("message"));
-                sendMessage(messageService,"@"+messageInfo.getString("message"));
-            }
-        }
-        catch (NullPointerException e){
-            reader.close();
-        }
-    }
 
+        }
+        return endDelete.equals("no file");
+    }
     private static void sendMessage(MessageService messageService, String s) {
         Log.d("sender", "Broadcasting message");
         Intent intent = new Intent("custom-event-name");
