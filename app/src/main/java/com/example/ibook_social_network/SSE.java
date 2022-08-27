@@ -16,22 +16,24 @@ public class SSE {
         boolean exit = true;
         while (exit) {
             try {
-                String line;
-                line = reader.readLine();
-                exit = !(line == null);
-                if(!checkLine.equals(line)){
-                    if(GetMessage.getCommand(line, email, messageService))reader.close();
-                    checkLine = line;
+                try {
+                    String line = reader.readLine();
+                    if (!checkLine.equals(line)) {
+                        checkLine = line;
+                        GetMessage.getCommand(line, email, messageService, reader);
+                    }
+                    exit = !(line == null);
+                } catch (JSONException ignored) {
                 }
-            }
-            catch (NullPointerException | JSONException e){
+            } catch (IOException | NullPointerException e) {
+                exit = false;
                 reader.close();
             }
         }
         try {
             reader.close();
         } catch (IOException e) {
-            e.printStackTrace();
+           // e.printStackTrace();
         }
     }
 }

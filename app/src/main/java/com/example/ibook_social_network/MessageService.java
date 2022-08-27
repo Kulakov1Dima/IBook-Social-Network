@@ -9,19 +9,19 @@ import android.os.Looper;
 import android.os.Message;
 import android.os.Process;
 import android.util.Log;
-import android.widget.Toast;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class MessageService extends Service {
 
+    public static int countConnect = 0;
     private MessageService.ServiceHandler serviceHandler;
     int countError = 0;
+
     class ServiceHandler extends Handler {
         public ServiceHandler(Looper looper) {
             super(looper);
@@ -29,31 +29,32 @@ public class MessageService extends Service {
 
         @Override
         public void handleMessage(Message msg) {
+
             try {
-                URL url = new URL("http://ibook.agency/ibook/"+Configuration.email);
+                countConnect++;
+                URL url = new URL("http://ibook.agency/ibook/" + Configuration.email);
                 HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-                Log.d("SSE", "http response: " + urlConnection.getResponseCode());
+                //Log.d("SSE", "http response: " + urlConnection.getResponseCode());
                 InputStream inputStream = new BufferedInputStream(urlConnection.getInputStream());
                 SSE.setInputStream(inputStream, Configuration.email, MessageService.this);
-            } catch (MalformedURLException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
+            } catch (IOException | NullPointerException e) {
                 //Log.e("SSE activity", "Error on url openConnection: " + e.getMessage());
                 countError++;
                 try {
-                    Thread.sleep(10000);
+                    if (countError > 2) Thread.sleep(10000);
                 } catch (InterruptedException ex) {
-                    ex.printStackTrace();
+                   // ex.printStackTrace();
                 }
             }
-            if(countError>3)onDestroy();
+            if (countConnect > 10) onDestroy();
+            if (countError > 5) onDestroy();
             else handleMessage(msg);
         }
     }
 
     @Override
     public void onCreate() {
-        HandlerThread thread = new HandlerThread("IbookService",Process.THREAD_PRIORITY_BACKGROUND);
+        HandlerThread thread = new HandlerThread("IbookService", Process.THREAD_PRIORITY_BACKGROUND);
         thread.start();
         Looper serviceLooper = thread.getLooper();
         serviceHandler = new ServiceHandler(serviceLooper);

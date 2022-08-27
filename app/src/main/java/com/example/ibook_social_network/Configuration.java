@@ -17,8 +17,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
-import java.io.IOException;
-
 public class Configuration {
 
     public static String email = "";
@@ -93,19 +91,13 @@ public class Configuration {
     public static void auth(Context activity, String email, String name, Uri photo) {
         new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/auth.php", CreateJSON.JSON(email, name, String.valueOf(photo), null));
     }
-    /*
-    //get list of letters
-    public static void listOfLetters(Context activity, Intent intent) {
-        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/message%20storage.php",
-                CreateJSON.JSON(intent.getStringExtra("token"), null, intent.getStringExtra("profile_picture"), null));
-    }
-     */
 
     //get list of letters
-    public static void listOfLettersForSSE(Intent intent) throws IOException {
-       // AddPost.post("http://ibook.agency/ibook/" + intent.getStringExtra("token") + "/del.php","hello");
-                //CreateJSON.JSON(intent.getStringExtra("token"), "", intent.getStringExtra("profile_picture"), ""));
+    public static void listOfLetters(Context activity, Intent intent) {
+        new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/"+ intent.getStringExtra("token") + "/del.php",
+                CreateJSON.JSON(intent.getStringExtra("token"), null, intent.getStringExtra("profile_picture"), null));
     }
+
     //sending message
     public static void sendMessage(Context activity, String token, String recipient, String photo, String message) {
         new SendingPost((SendingPost.Callback) activity).execute("http://ibook.agency/ibook/send.php",
