@@ -30,3 +30,6 @@ https://drive.google.com/drive/folders/1JsqzhwD2wjgHeR4ufhXA7Ja5ki2XDy6s?usp=sha
 
 # Скачать версию 2.5.1(update to optimize phone battery consumption):
 https://drive.google.com/drive/folders/1bpka4aQ-VYA0u6BjWbHk3QMvAlDVkf3a?usp=sharing
+
+# Объявление
+с 28 августа по 29 сервер не работает, ведутся технические работы
