@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable-anydpi/ic_action_picture_profile.xml" value="0.246" />
         <entry key="app/src/main/res/drawable-anydpi/ic_cancel_button.xml" value="0.246" />
         <entry key="app/src/main/res/drawable-anydpi/ic_message.xml" value="0.246" />
+        <entry key="app/src/main/res/drawable-anydpi/ic_send_button.xml" value="0.246" />
         <entry key="app/src/main/res/drawable-xhdpi/big_buttons.xml" value="0.106" />
         <entry key="app/src/main/res/drawable/auth.xml" value="0.292" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.134" />
@@ -14,10 +15,12 @@
         <entry key="app/src/main/res/drawable/my_message_background.xml" value="0.246" />
         <entry key="app/src/main/res/drawable/oval_buttons.xml" value="0.292" />
         <entry key="app/src/main/res/drawable/tool_background.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_connections.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_dialogue.xml" value="0.284375" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.4466666666666667" />
         <entry key="app/src/main/res/layout/activity_messenger.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_not_conected_to_the_internet.xml" value="0.4466666666666667" />
+        <entry key="app/src/main/res/layout/activity_server_not_found.xml" value="0.3333333333333333" />
         <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.28125" />
         <entry key="app/src/main/res/layout/adding_new_message.xml" value="0.4466666666666667" />
         <entry key="app/src/main/res/layout/background_messenge.xml" value="0.284375" />

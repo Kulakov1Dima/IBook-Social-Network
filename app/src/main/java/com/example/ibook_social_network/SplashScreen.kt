@@ -6,31 +6,35 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ibook_social_network.Configuration.checkServer
 
 /**
  * Ibook - приложение соцсети.
  * 21.10.2021  01:09 Кулаков Дмитрий
- * 2.5.1.1 (205)
+ * 2.5.2 (206)
  */
 
 @SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //starting the screen
+        //start the screen
         Configuration.awp(window, supportActionBar)
         setContentView(R.layout.activity_splash_screen)
-        //checking the internet and google account
         Handler(Looper.getMainLooper()).postDelayed({
-            var intent = Configuration.checkGoogle(Intent(this, Messenger::class.java), this)
-            if (!Configuration.isOnline(this)) {
-                intent = Intent(this, NotConnectedToTheInternet::class.java)
-            } else if (intent == null) {
-                //checking last authorization
-                intent = Intent(this, MainActivity::class.java)
+            //check internet connection
+            if (!Configuration.checkConnections(this)) {
+                startActivity(Intent(this, ConnectionsActivity::class.java))
+                finish()
+            } else {
+                //checking the connection to the server
+                if (checkServer()) {
+                    println("true")
+                } else {
+                    startActivity(Intent(this, ServerNotFound::class.java))
+                    finish()
+                }
             }
-            startActivity(intent)
-            finish()
-        }, 500) // 500 is the delayed time in milliseconds.
+        }, 100)
     }
 }
