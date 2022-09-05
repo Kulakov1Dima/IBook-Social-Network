@@ -7,6 +7,7 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.example.ibook_social_network.Configuration.checkServer
+import com.google.android.gms.auth.api.signin.GoogleSignIn
 
 /**
  * Ibook - приложение соцсети.
@@ -27,9 +28,16 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(Intent(this, ConnectionsActivity::class.java))
                 finish()
             } else {
-                //checking the connection to the server
+                //checking the connection to the server and google
                 if (checkServer()) {
-                    println("true")
+                    val account = GoogleSignIn.getLastSignedInAccount(this)
+                    if(account == null){
+                        startActivity(Intent(this, MainActivity::class.java))
+                        finish()
+                    }
+                    else{
+                        println(account.email)
+                    }
                 } else {
                     startActivity(Intent(this, ServerNotFound::class.java))
                     finish()
