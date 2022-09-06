@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
+import com.example.ibook_social_network.Configuration.authUrl
 import com.example.ibook_social_network.Configuration.checkServer
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 
@@ -16,7 +17,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn
  */
 
 @SuppressLint("CustomSplashScreen")
-class SplashScreen : AppCompatActivity() {
+class SplashScreen : AppCompatActivity(), SendingPost.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //start the screen
@@ -36,7 +37,7 @@ class SplashScreen : AppCompatActivity() {
                         finish()
                     }
                     else{
-                        println(account.email)
+                        SendingPost(this).execute(authUrl , account.email)
                     }
                 } else {
                     startActivity(Intent(this, ServerNotFound::class.java))
@@ -44,5 +45,9 @@ class SplashScreen : AppCompatActivity() {
                 }
             }
         }, 100)
+    }
+
+    override fun callingBack(s: String?) {
+        println(s)
     }
 }

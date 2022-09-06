@@ -13,10 +13,15 @@ import androidx.appcompat.app.ActionBar;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 
 
 public class Configuration {
+
+    public static String authUrl = "http://134.0.115.2/auth.php";
 
     //applying window parameters
     public static void awp(Window window, ActionBar supportActionBar) {
