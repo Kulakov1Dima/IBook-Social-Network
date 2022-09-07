@@ -47,7 +47,12 @@ class SplashScreen : AppCompatActivity(), SendingPost.Callback {
         }, 100)
     }
 
-    override fun callingBack(s: String?) {
-        println(s)
+    override fun callingBack(response: String?) {
+        if(response.toBoolean()){
+            println(true)
+        }
+        else{
+            println(false)
+        }
     }
 }
