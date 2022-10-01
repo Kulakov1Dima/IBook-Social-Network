@@ -47,7 +47,12 @@ class SplashScreen : AppCompatActivity(), SendingPost.Callback {
         }, 100)
     }
 
-    override fun callingBack(s: String?) {
-        println(s)
+    override fun callingBack(authorized: String?) {
+        if(authorized.toBoolean()){
+
+        }
+        else{
+            startActivity(Intent(this, Registration::class.java))
+        }
     }
 }
