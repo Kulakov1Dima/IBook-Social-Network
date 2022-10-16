@@ -53,6 +53,7 @@ class SplashScreen : AppCompatActivity(), SendingPost.Callback {
         }
         else{
             startActivity(Intent(this, Registration::class.java))
+            finish()
         }
     }
 }
