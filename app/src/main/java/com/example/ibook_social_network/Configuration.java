@@ -18,7 +18,7 @@ import java.io.IOException;
 
 public class Configuration {
 
-    public static String authUrl = "http://134.0.115.2/auth.php";
+    public static String authUrl = "http://134.0.115.2:9000/auth";
 
     //applying window parameters
     public static void awp(Window window, ActionBar supportActionBar) {

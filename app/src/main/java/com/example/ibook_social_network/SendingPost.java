@@ -38,6 +38,7 @@ class SendingPost extends AsyncTask<String, Void, Void> {
     protected Void doInBackground(String... strings) {
         try {
             response = post(strings[0], strings[1]);
+            System.out.println(response);
         } catch (IOException ignored) {
         }
         return null;
