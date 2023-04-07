@@ -11,9 +11,10 @@ android {
         minSdk 24
         targetSdk 32
         versionCode 3
-        versionName "2.5.2"
+        versionName "2.6.9"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [YANDEX_CLIENT_ID:"2788d8016ff944248226104f93f4f855"]
     }
 
     buildTypes {
@@ -32,7 +33,6 @@ android {
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.8.0'
     implementation 'androidx.appcompat:appcompat:1.5.0'
     implementation 'com.google.android.material:material:1.6.1'
@@ -48,4 +48,5 @@ dependencies {
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.13.2'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation "com.yandex.android:authsdk:2.5.1"
 }

@@ -4,35 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Registration">
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip7"
-        android:layout_width="50dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        app:chipCornerRadius="100dp"
-        app:chipIcon="?attr/actionModeCloseDrawable"
-        app:chipIconEnabled="true"
-        app:chipStartPadding="10sp"
-        app:chipStrokeColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/chip8"
-        android:layout_width="0dp"
-        android:layout_height="65dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="10dp"
-        android:clickable="false"
-        android:text="Регистрация"
-        android:textAlignment="center"
-        android:textSize="22sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/chip7"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".registration.RegistrationActivity">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

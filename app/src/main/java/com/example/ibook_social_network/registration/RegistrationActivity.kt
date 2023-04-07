@@ -1,13 +1,12 @@
-package com.example.ibook_social_network
+package com.example.ibook_social_network.registration
 
-import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import com.example.ibook_social_network.R
 
-class Registration : AppCompatActivity() {
+class RegistrationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //start the screen
-        Configuration.awp(window, supportActionBar)
         setContentView(R.layout.activity_registration)
     }
 }

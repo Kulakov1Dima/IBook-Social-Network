@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ServerNotFound">
+    tools:context=".network.ServerNotFound">
 
     <TextView
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="Не удалось  подключиться к серверу! \n Проверьте подключение к интернету\n либо обновите приложение."
+        android:layout_marginTop="70dp"
+        android:text="Не удалось  подключиться к серверу! \n Возможно он недоступен, уточните в технической поддержке.\n Проверьте подключение к интернету\n либо обновите приложение."
         android:textAlignment="center"
         android:textSize="19sp"
         app:layout_constraintEnd_toEndOf="parent"
