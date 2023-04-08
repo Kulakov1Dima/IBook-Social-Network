@@ -23,8 +23,8 @@ class ShowUpdate {
         fun show(version: String, current_version: String, context: Context) {
             if (version != current_version) {
 
-                val snoozeIntent = Intent(context, SplashActivity::class.java)
-                val snoozePendingIntent = PendingIntent.getBroadcast(context, 0, snoozeIntent, 0)
+                val updateIntent = Intent(context, UpdateActivity::class.java)
+                val snoozePendingIntent = PendingIntent.getActivity(context.applicationContext, 0, updateIntent, PendingIntent.FLAG_IMMUTABLE)
 
                 val builder = NotificationCompat.Builder(context, CHANNEL_ID)
                     .setSmallIcon(R.drawable.ic_launcher)
