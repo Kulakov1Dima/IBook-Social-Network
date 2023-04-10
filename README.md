@@ -26,3 +26,9 @@
 http://134.0.115.2/up/
 
 функцианала теперь (пока) нет, однако приложение в будущем само будет устанавливать обновления.
+
+# Связанные проекты:
+
+https://github.com/Kulakov1Dima/Ibook-Server
+
+https://github.com/Kulakov1Dima/console-messenger-ibook
