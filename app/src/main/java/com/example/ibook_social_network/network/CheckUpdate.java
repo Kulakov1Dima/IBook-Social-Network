@@ -45,7 +45,7 @@ public class CheckUpdate {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull final Response response) throws IOException {
                         assert response.body() != null;
-                        ShowUpdate.show(response.body().string(), current_version, context);
+                        ShowUpdate.show(response.body().string().replace("\"",""), current_version, context);
                     }
                 });
     }

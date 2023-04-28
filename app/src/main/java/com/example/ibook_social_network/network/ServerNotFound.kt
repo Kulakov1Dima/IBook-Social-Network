@@ -1,6 +1,7 @@
 package com.example.ibook_social_network.network
 
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ class ServerNotFound : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         //start the screen
         setContentView(R.layout.activity_server_not_found)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     fun connected(view: View?) {

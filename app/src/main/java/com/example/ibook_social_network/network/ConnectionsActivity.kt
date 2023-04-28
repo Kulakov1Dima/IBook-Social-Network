@@ -2,6 +2,7 @@ package com.example.ibook_social_network.network
 
 import android.content.Context
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
@@ -17,6 +18,7 @@ class ConnectionsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_connections)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
     }
 
     fun settingsWifi(view: View?) {

@@ -42,7 +42,7 @@ public class Network {
                     @Override
                     public void onResponse(@NonNull Call call, @NonNull final Response response) throws IOException {
                         if((response.body() != null ? response.body().string().length() : 0) >0){
-                            CheckUpdate.checkUpdate(CheckUpdate.getVersion(splashActivity), splashActivity);
+                            CheckUpdate.checkUpdate(CheckUpdate.getVersion(splashActivity.getApplicationContext()), splashActivity);
                             splashActivity.startActivity(new Intent(splashActivity, AuthActivity.class));
                             splashActivity.finish();
                         }
